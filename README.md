@@ -2,7 +2,8 @@
 Simulador interactivo de un exchange de criptomonedas
 ## Consigna
 Crear un simulador interactivo usano ciclos condicionales, ciclos con bucles y funciones para realizar diferentes operaciones
-##Resultado
+
+## Resultado
 Se crea un simulador de un exchange de criptomonedas.
 Por medio de diferentes funciones se recrea el abono a la billetera, la compra/conversión de moneda fiat (en este caso dolar) por cirptomoneda (BTC, ETH o USDC) y 
 finalmente, el resumen de la operación. 
