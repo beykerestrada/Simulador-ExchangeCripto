@@ -13,7 +13,7 @@ function simulador() {
         {nombre: "Ether", signo: "ETH", valor: 1487.74},
     ]
 
-// SE CREA LA CONSTANTE PRECIOS PARA EXTRAER EL PRECIO DE LAS CRIPTOS DESDE EL ARRAY Y PODER USARLO PARA REALIZAR LA CONVERSION MÁS ADELANTE
+// SE CREA LA CONSTANTE PRECIOS PARA EXTRAER EL PRECIO DE LAS CRIPTOS DESDE EL ARRAY "CURRENCIES" Y PODER USARLO PARA REALIZAR LA CONVERSION MÁS ADELANTE
     const precios = currencies.map(i => i.valor);
     console.log(precios);
 
@@ -104,9 +104,4 @@ function simulador() {
         }
     }
     resumen();
-
-    
-    
-
-
 }
