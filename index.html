@@ -10,18 +10,67 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/estilos.css">
+    <script src="https://kit.fontawesome.com/7a66b2a120.js" crossorigin="anonymous"></script>
     <title>Crypto Exchange</title>
 </head>
 
 <body>
-    <div class="container">
+
+    <header id="header" class="header">
+        <div class="container cabecera">
+            <div class="contenedorLogo">
+                <h1 class="logo">Crypto Exchange</h1>
+            </div>
+            <div class="contenedorSaldos">
+                <div class="saldoTitulo">
+                    Saldo disponible:
+                </div>
+                <ul class="saldoLista">
+                    <li id="saldoFiat" class="saldoItem">
+                        &#36 <span id= "saldoUsdCifra">0</span>
+                    </li>
+                    <input type="checkbox" id="mostrarSaldo">
+                    <label for="mostrarSaldo" class="iconoSaldo"><i class="fa-solid fa-caret-down"></i></label>
+                    <li id="saldoBtc" class="saldoItem-hide">
+                        &#8383 <span id= "saldoCifra" class="saldoCifraBtc">0</span>
+                    </li>
+                    <li id="saldoEth" class="saldoItem-hide">
+                        &#x039E <span id= "saldoCifra" class="saldoCifraEth">0</span>
+                    </li>
+                    <li id="saldoUsdc" class="saldoItem-hide">
+                        USDC <span id= "saldoCifra" class="saldoCifraUsdc">0</span>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </header>
+    <div class="container containerBody">
         <h1>Entra al mundo <span>crypto</span> en un par de minutos</h1>
         <h2>¿Quieres tener Bitcoin, Ethereum o USDC?</h2>
         <p>¡Comprarlas es mucho más facil de lo que esperabas!</p>
         <div class="btnContainer">
-            <input id="btn" type="button" onclick="simulador()" value="Comprar ahora">
+            <input id="open" class="btn btn__principal" type="button" onclick="" value="Abonar Saldo">
+            <input id="open" class="btn btn__principal" type="button" onclick="simulador()" value="Comprar ahora">
         </div>
+    </div>
+    <div class="modal" id="modalContainer">
+        <div class="contenedorFormulario" id="modal1">
+            <h1 class="tituloModal">
+                Abonar saldo
+            </h1>
+            <form method="dialog"  class="formularioAbono">
 
+                <label class="formulario__label">Ingresa la cantidad
+                </label>
+                <input type="number" min="10" id="valorAbono" class="valorAbono" placeholder="Monto mínimo: 10 USD" required>
+                <div class="formulario__botones">
+                    <button type="button"  onclick="abonar()" id="btn__abonar" class="btn">Abonar</button>
+                    <input type="button" value="Cancelar" id="close" class="btn__secundario">
+                </div>
+
+            </form>
+        </div>
     </div>
 
     <script src="js/index.js"></script>

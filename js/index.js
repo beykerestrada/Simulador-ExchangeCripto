@@ -1,41 +1,60 @@
+
+// Se crean constantes para trabajar con modal en el sitio
+
+const open = document.getElementById("open");
+const close = document.getElementById("close");
+const modalContainer = document.getElementById("modalContainer");
+const saldoAbonado = document.getElementById("btn__abonar");
+
+// Deteccion de eventos para mostrar y esconder el modal que tiene como función el abono a la billetera
+saldoAbonado.addEventListener("click", (e) => {
+    e.preventDefault();
+    modalContainer.classList.remove("show");
+})
+
+open.addEventListener("click", (e) => {
+    e.preventDefault();
+    modalContainer.classList.add("show");
+});
+close.addEventListener("click", (e) => {
+    modalContainer.classList.remove("show");
+    e.preventDefault();
+});
+
+
+
+
+/* Con esta función practiqué la consigna del desafío, que es recibir datos y modificar el HTML con esos datos
+    Funcion abonar se activa al hacer clic en el boton "Abonar Saldo".
+    Antes tenía un bucle que validaba que se ingresara un valor numérico, mayor a 10 USD.
+    Ahora esto se hace mediante el HTML.
+    
+    Además al terminar el proceso con el botón "Abonar" dentro del modal. Se escribe mediante 
+    JavaScript, el saldo abonado en la parte derecha de la cabecera*/
+function abonar(){
+    saldoUsd = document.getElementById("valorAbono").value;
+    let saldoUsdCifra = document.getElementById("saldoUsdCifra");
+    saldoUsdCifra.innerHTML = saldoUsd;
+}
+
 function simulador() {
 
-    let saldoUsd = 0;
     let cantidad = 0;
     let compra = 0;
     let moneda = 0;
 
-// ARRAY QUE ALMACENA LAS DIFERENTES CRIPTOMONEDAS EN OFERTA COMO OBJETOS
+    // ARRAY QUE ALMACENA LAS DIFERENTES CRIPTOMONEDAS EN OFERTA COMO OBJETOS
 
     const currencies = [
-        {nombre: "USDCoin", signo: "USDC", valor: 1},
-        {nombre: "Bitcoin", signo: "BTC", valor: 20067.80},
-        {nombre: "Ether", signo: "ETH", valor: 1487.74},
+        { nombre: "USDCoin", signo: "USDC", valor: 1 },
+        { nombre: "Bitcoin", signo: "BTC", valor: 20067.80 },
+        { nombre: "Ether", signo: "ETH", valor: 1487.74 },
     ]
 
-// SE CREA LA CONSTANTE PRECIOS PARA EXTRAER EL PRECIO DE LAS CRIPTOS DESDE EL ARRAY "CURRENCIES" Y PODER USARLO PARA REALIZAR LA CONVERSION MÁS ADELANTE
+    // SE CREA LA CONSTANTE PRECIOS PARA EXTRAER EL PRECIO DE LAS CRIPTOS DESDE EL ARRAY "CURRENCIES" Y PODER USARLO PARA REALIZAR LA CONVERSION MÁS ADELANTE
     const precios = currencies.map(i => i.valor);
-    console.log(precios);
 
-    //Este bucle activa la acción de abonar a la billetera y guarda el valor en la variable saldoUsd
-    function abonar() {
-        nombreUsuario = prompt("Ingresa tu nombre");
-        alert(`Bievenid@ ${nombreUsuario}`);
-        while (saldoUsd <= 0) {
-            saldoUsd = parseInt(prompt("Ingrese el monto a abonar en USD"));
-            if (saldoUsd < 10) {
-                alert(`El monto mínimo que puedes abonar son 10 USD`);
-                saldoUsd = 0;
-            } else if (Number.isNaN(saldoUsd)) {
-                alert("Por favor ingresa un valor numérico");
-                saldoUsd = 0;
-            }
-            else {
-                alert(`Tu saldo disponible es: ${saldoUsd} USD`);
-            }
-        }
-    }
-    abonar();
+
 
 
     //Esta función primero valida que el monto a gastar no se mayor que el saldo disponible
@@ -44,7 +63,7 @@ function simulador() {
         while (compra <= 0) {
             cantidad = parseInt(prompt("Ingrese el monto a gastar en USD"));
             if (cantidad > saldoUsd) {
-                alert(`No tienes saldo suficiente, ingresa un monto menor a ${saldoUsd + 1}`);
+                alert(`No tienes saldo suficiente, ingresa un monto menor a ${saldoUsd}`);
                 compra = 0;
             } else if (Number.isNaN(cantidad)) {
                 alert("Por favor ingresa un valor numérico")
@@ -74,7 +93,7 @@ function simulador() {
     */
 
     function convertir(cantidad, moneda) {
-
+        
         switch (moneda) {
             case 1:
                 return cantidad / precios[1] + " BTC";
@@ -93,6 +112,7 @@ function simulador() {
 
     let saldoCrypto = convertir(cantidad, moneda);
 
+    
     //Entrega el resultado de la operación de compra. 
     function resumen() {
         if (moneda <= 3) {
@@ -102,6 +122,7 @@ function simulador() {
             alert("Opción inválida");
             alert(`RESUMEN:\nSaldo abonado: ${saldoUsd + cantidad}\nCriptos compradas: ${0}\nSaldo disponible en USD: ${saldoUsd + cantidad}\n`);
         }
+        saldoUsdCifra.innerHTML = saldoUsd; //Esto vuelve a modificar el HTML, modificando en la cabecera el valor "Saldo Disponible"
     }
     resumen();
 }
