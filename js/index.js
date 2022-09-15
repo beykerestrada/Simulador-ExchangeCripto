@@ -37,6 +37,10 @@ function abonar(){
     saldoUsdCifra.innerHTML = saldoUsd;
 }
 
+// Deteccion de eventos para activar la función abonar 
+let btnAbonar = document.getElementById("btn__abonar");
+btnAbonar.onclick = abonar;
+
 function simulador() {
 
     let cantidad = 0;
@@ -126,3 +130,7 @@ function simulador() {
     }
     resumen();
 }
+
+//Deteccion de eventos para actvar la función simulador
+const btnComprar = document.getElementById("btnComprar");
+btnComprar.addEventListener("click", simulador); 
