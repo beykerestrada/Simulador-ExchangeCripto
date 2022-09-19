@@ -15,13 +15,17 @@
 </head>
 
 <body>
-
+    <div id= "container" class="container show">
     <header id="header" class="header">
         <div class="container cabecera">
             <div class="contenedorLogo">
                 <h1 class="logo">Crypto Exchange</h1>
             </div>
-            <div class="contenedorSaldos">
+            <!-- 
+                Me reservo el espacio de este div que será remplazado por otro 
+                elemento más adelante
+
+                <div class="contenedorSaldos">
                 <div class="saldoTitulo">
                     Saldo disponible:
                 </div>
@@ -42,7 +46,7 @@
                     </li>
                 </ul>
 
-            </div>
+            </div> -->
         </div>
     </header>
     <div class="container containerBody">
@@ -50,29 +54,30 @@
         <h2>¿Quieres tener Bitcoin, Ethereum o USDC?</h2>
         <p>¡Comprarlas es mucho más facil de lo que esperabas!</p>
         <div class="btnContainer">
-            <input id="open" class="btn btn__principal" type="button"  value="Abonar Saldo">
-            <input id="btnComprar" class="btn btn__principal" type="button"  value="Comprar ahora">
+            <input id="open" class="btn btn__principal" type="button"  value="Comenzar">
         </div>
     </div>
     <div class="modal" id="modalContainer">
         <div class="contenedorFormulario" id="modal1">
             <h1 class="tituloModal">
-                Abonar saldo
+                Iniciar Sesión
             </h1>
-            <form method="dialog"  class="formularioAbono">
-
-                <label class="formulario__label">Ingresa la cantidad
-                </label>
-                <input type="number" min="10" id="valorAbono" class="valorAbono" placeholder="Monto mínimo: 10 USD" required>
+            <div class="contenedorFormImg">
+                <img class="formImg" src="img/undraw_login_re_4vu2.svg" alt="Hombre entrando a través de una puerta">
+            </div>
+            <form id="loginForm" class="formularioLogin">
+                <label for="userName">Nombre de usuario: </label>
+                <input id="userName"  class="userName" type="text" required>
+                <label for="userName">Contraseña: </label>
+                <input id="password" type="password" class="password" required>
                 <div class="formulario__botones">
-                    <button type="button"  id="btn__abonar" class="btn">Abonar</button>
-                    <input type="button" value="Cancelar" id="close" class="btn__secundario">
+                    <button type="button"  id="btn__login" class="btn">Entrar</button>
                 </div>
 
             </form>
         </div>
     </div>
-
+    </div>
     <script src="js/index.js"></script>
 </body>
 

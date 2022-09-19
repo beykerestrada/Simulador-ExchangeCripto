@@ -15,6 +15,10 @@ body {
 
 }
 
+.body__billetera {
+    background: #aaa;
+}
+
 .container {
     width: 80%;
     max-width: 1200px;
@@ -42,82 +46,13 @@ body {
     justify-content: space-between;
     align-items: center;
     position: relative;
-}
-
-.contenedorSaldos {
-    position: absolute;
-    top: 18px;
-    right: 0px;
-    display: flex;
-    align-items: flex-start;
-
-}
-
-
-.saldoItem,
-.saldoItem-hide {
-    padding: 10px;
-    width: 200px;
-    background-color: #255F85;
-    list-style-type: none;
-    color: #fff;
-}
-
-#saldoCifra, #saldoUsdCifra {
-    padding: 10px;
-    width: 200px;
-    background-color: #255F85;
-    list-style-type: none;
-    color: #fff;
-}
-
-.saldoItem {
-    padding-top: 1px;
-}
-
-.dropdown {
-    height: 100%;
-    border-left: 1px solid #807a7a;
-}
-
-.iconoSaldo {
-    font-size: 16px;
-    cursor: pointer;
-    padding: 10px;
-    position: absolute;
-    top: -10px;
-    right: 0%;
-}
-
-#mostrarSaldo,
-.saldoItem-hide {
-    display: none;
-}
-
-.saldoItem-hide {
-    display: none;
-    border-top: 1px solid #807a7a;
-    transition: all .3s;
-}
-
-
-#mostrarSaldo:checked~.saldoItem-hide {
-    display: block;
+    margin: 0 30px;
 }
 
 
 .logo {
     font-size: 30px;
 }
-
-.saldoTitulo {
-    color: #FFC857;
-    font-weight: 400;
-    font-size: 16px;
-    list-style-type: none;
-}
-
-
 
 h1,
 h2,
@@ -127,10 +62,6 @@ p {
     color: #d6cece;
 }
 
-span {
-    color: #F9C10D;
-    font-style: italic;
-}
 
 h1 {
     font-size: 40px;
@@ -144,15 +75,45 @@ h2 {
 
 p {
     font-size: 25px;
-    margin-bottom: 40px;
     font-weight: 300;
+}
+
+#contenedorLogin{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+}
+.nombreUsuario {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+}
+
+.nombreUsuario__p p{
+    font-size: 18px;
+    margin-right: 20px;
+}
+
+.logOut {
+    border-left: 1px solid #d6cece;
+    padding-left: 5px;
+}
+
+.logOut i {
+    font-size: 30px;
+    color: #d6cece;
+    transition: all .3s;
+}
+
+.logOut i:hover {
+    color: #999393;
 }
 
 .btnContainer {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    width: 50%;
+    width: 60%;
     margin: 0 auto;
 }
 
@@ -214,7 +175,7 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.7);
     transition: all 1s;
 }
 
@@ -283,3 +244,255 @@ input[type="number"]::-webkit-outer-spin-button {
     margin: 0;
 }
 
+/* Estilos para el formulario de Log in*/
+.formularioLogin {
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contenedorFormImg {
+    width: 90%;
+    display: grid;
+    place-items: center;
+}
+
+.formImg {
+    width: 80%;
+    margin: auto auto;
+}
+
+.formulario__botones {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 30px;
+}
+.userName, .password {
+    height: 30px;
+    margin: 0 0 20px 0;
+    background-color: #dfe5e7;
+    border: 0px;
+    border-radius: 3px;
+    font-size: 20px;
+    padding: 0 20px;
+}
+.formulario__label  {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 25px;
+    
+}
+
+.tableSaldos {
+    width: 100%;
+    text-align: left;
+}
+.tableSaldos th{
+    height: 50px;
+    padding: 20px;
+    font-size: 25px;
+}
+.tableSaldos td{
+    height: 50px;
+    font-size: 25px;
+    padding-left: 20px;
+}
+
+.contenedorBtn {
+    padding: 0;
+}
+.monedaBtn {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+.main {
+    height: 80vh;
+    width: 70%;
+}
+.compra {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #cfcfcf;
+    border-radius: 3px;
+    margin: 20px;
+    box-shadow: 8px 7px 14px -6px rgba(0,0,0,0.59);
+    
+}
+
+.contenedorTituloCompra {
+    width: 100%;
+    height: 30%;
+}
+
+.tituloCompra {
+    font-size: 40px;
+    text-align: center;
+    background-color: #3fa39c;
+    color: #d6cece;
+    padding: 20px;
+    margin: 0;
+    width: 100%;
+}
+
+.contenedorForm {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+}
+.formularioCompra, .formularioAbono {
+    height: 80%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px 5px;
+    padding: 20px;
+    height: 90%;
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    box-shadow: 8px 7px 14px -6px rgba(0,0,0,0.59);
+
+}
+
+.gasto, .listaCripto {
+    height: 40px;
+    font-size: 20px;
+    margin: 20px 0;
+}
+.labelCompra {
+    font-size: 30px;
+    
+}
+
+.contenedorTituloProx {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedorTituloProx h2 {
+    color: #000;
+    font-size: 60px;
+}
+
+
+
+.flexContainer {
+    width: 100%;
+    margin: 40px 20px 80px 0;
+    display: flex;
+    
+}
+
+.navegacion {
+    background-color: #cfcfcf;
+    border-radius: 3px;
+    height: 100vh;
+    width: 25%;
+    box-shadow: 8px 7px 14px -6px rgba(0,0,0,0.59)
+}
+
+.contenedorTituloBilletera {
+    padding: 0;
+}
+
+.tituloBilletera {
+    font-size: 40px;
+    text-align: center;
+    background-color: #3fa39c;
+    color: #d6cece;
+    padding: 20px;
+    margin: 0;
+}
+.main {
+    height: 80vh;
+    width: 70%;
+}
+.billetera {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #cfcfcf;
+    border-radius: 3px;
+    margin: 20px;
+    box-shadow: 8px 7px 14px -6px rgba(0,0,0,0.59);
+    
+}
+
+.navegacion__ul {
+    margin-top: 40px;
+}
+
+.navegacion__li {
+    list-style-type: none;
+}
+
+.navegacion__btn {
+    padding: 20px;
+    margin: 5px 5px 5px 0px;
+    text-decoration: none;
+    color: #444;
+    font-size: 20px;
+    text-align: left;
+    width: 95%;
+    height: 100%;
+    border: none;
+    border-bottom-right-radius: 16px;
+    border-top-right-radius: 16px;
+    background-color: transparent;
+    transition: all .4s;
+}
+
+.navegacion__btn:hover {
+    box-shadow: 6px 6px 5px #b5b5b5,
+                -6px -6px 5px #c8c8c8;
+}
+
+.navegacion__btn:active {
+   background-color: #bfbfbf;
+}
+
+.monedas {
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    border-top: 0.2px solid #3fa39c;
+}
+
+.monedaSigno {
+    width: 10%;
+    font-size: 20px;
+}
+
+.monedaMonto {
+    width: 60%;
+    font-size: 20px;
+    padding-left: 20px;
+}
+.monedaBtn {
+    width: 30%;
+}
+#btnComprar, #btnVender, #btnAbonar, #btnRetirar {
+    width: 45%;
+    padding: 10px;
+}
+.btn__historial {
+    align-self: flex-end;
+}
