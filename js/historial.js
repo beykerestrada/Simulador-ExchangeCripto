@@ -1,26 +1,19 @@
 
 const contenedorHistorial = document.getElementById("contenedorHistorial");
-/*
-Rodigo, aqui estoy teniendo problemas. Quiero guardar el historial en el local storage, pero
-solo me guarda hasta que recardo, la página. Descubrí que es por declarar el array vacío en primer lugar
-
-Pero si no lo declaro, no me permite hacerle el push y por ende, no lo guarda. 
-
-Tendrás algún consejo
-*/
-transactionHistory = [];
+const transactionHistory = JSON.parse(localStorage.getItem("transactionHistory")) ||[];
 
 class NewRecord {
-    constructor(id, monedaAbonada, cantidad, precio) {
+    constructor(id, operacion, monedaOperada, cantidad, precio) {
         this.id = id;
-        this.monedaAbonada = monedaAbonada;
+        this.operacion = operacion;
+        this.monedaOperada = monedaOperada;
         this.cantidad = cantidad;
         this.precio = precio;
     }
 }
 
-function addTransaction(){
-    let newTransaction = new NewRecord(id + 1, monedaAbonada, saldoUsd, "");
+function addTransaction(id, operacion, monedaOperada, cantidad, precio){
+    let newTransaction = new NewRecord(id, operacion, monedaOperada, cantidad, precio);
     transactionHistory.push(newTransaction);
     localStorage.setItem("transactionHistory", JSON.stringify(transactionHistory));
 }
@@ -32,7 +25,7 @@ function addTransaction(){
 
 
 /*
-Esta parte tambien me está costando, no he podido hacer que me apareczcan las transacciones en 
+Esta parte me está costando, no he podido hacer que me aparezcan las transacciones en 
 el DOM. Como lo puedo hacer? 
 */
 

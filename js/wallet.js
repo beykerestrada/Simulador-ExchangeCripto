@@ -22,7 +22,6 @@ function inicio() {
     billetera.style.display = "flex";
         abono.style.display = "none";
         compra.style.display = "none";
-        venta.style.display = "none";
         retiro.style.display = "none";
         historial.style.display = "none";
 }
@@ -31,7 +30,6 @@ function irBilletera() {
         billetera.style.display = "flex";
         abono.style.display = "none";
         compra.style.display = "none";
-        venta.style.display = "none";
         retiro.style.display = "none";
         historial.style.display = "none";
     });
@@ -42,7 +40,6 @@ function irAbonar() {
         abono.style.display = "flex";
         billetera.style.display = "none";
         compra.style.display = "none";
-        venta.style.display = "none";
         retiro.style.display = "none";
         historial.style.display = "none";
     });
@@ -51,7 +48,6 @@ function irAbonarDesdeWallet (){
     abono.style.display = "flex";
         billetera.style.display = "none";
         compra.style.display = "none";
-        venta.style.display = "none";
         retiro.style.display = "none";
         historial.style.display = "none";
 }
@@ -61,29 +57,17 @@ function irComprar() {
         compra.style.display = "flex";
         billetera.style.display = "none";
         abono.style.display = "none";
-        venta.style.display = "none";
         retiro.style.display = "none";
         historial.style.display = "none";
     });
 }
 
-function irVender() {
-    botonAccionado.addEventListener("click", () => {
-        venta.style.display = "flex";
-        billetera.style.display = "none";
-        compra.style.display = "none";
-        abono.style.display = "none";
-        retiro.style.display = "none";
-        historial.style.display = "none";
-    });
-}
 
 function irRetirar() {
     botonAccionado.addEventListener("click", () => {
         retiro.style.display = "flex";
         billetera.style.display = "none";
         compra.style.display = "none";
-        venta.style.display = "none";
         abono.style.display = "none";
         historial.style.display = "none";
     });
@@ -93,7 +77,6 @@ function irRetirarDesdeWallet() {
         retiro.style.display = "flex";
         billetera.style.display = "none";
         compra.style.display = "none";
-        venta.style.display = "none";
         abono.style.display = "none";
         historial.style.display = "none";
 }
@@ -103,14 +86,13 @@ function irHistorial() {
         historial.style.display = "flex";
         billetera.style.display = "none";
         compra.style.display = "none";
-        venta.style.display = "none";
         retiro.style.display = "none";
         abono.style.display = "none";
     });
 }
 
 
-for (let i = 0; i < 7; i++) {
+for (let i = 0; i < 6; i++) {
     botonAccionado = document.getElementById(`navegacionBtn__${i}`);
 
     if (i === 1) {
@@ -118,12 +100,10 @@ for (let i = 0; i < 7; i++) {
     }else if(i === 2){
         irAbonar();
     }else if (i === 3) {
-        irComprar();
-    } else if (i === 4) {
-        irVender();
-    }else if (i === 5) {
         irRetirar();
-    }else if (i === 6) {
+    } else if (i === 4) {
+        irComprar();
+    }else if (i === 5) {
         irHistorial();
     } else {
         inicio();

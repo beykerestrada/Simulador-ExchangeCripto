@@ -35,7 +35,8 @@ let id = 0;
 
 // Declaracion de funcion
 function abonarSaldo() {
-        monedaAbonada= "USD";
+        operacion = "Abono";
+        monedaOperada= "USD";
         saldoUsd = parseInt(document.getElementById("valorAbono").value);
         if(!saldoUsd){
             alert("Por favor ingresa el saldo a abonar");
@@ -49,7 +50,7 @@ function abonarSaldo() {
             localStorage.setItem("saldoActual", JSON.stringify(saldoActual));
             actualizarSaldo();
             inicio();
-            addTransaction();
+            addTransaction(transactionHistory.length + 1, operacion, monedaOperada, saldoUsd, "");
         }
 }
 
@@ -77,10 +78,12 @@ btnAbonar.onclick = () => {
 
 //COMIENZO FLUJO DE RETIRO
 
-let retiroUsd
+let retiroUsd;
 
 // Declaracion de funcion
 function retirarSaldo() {
+        monedaOperada = "USD";
+        operacion = "Retiro";
         retiroUsd = parseInt(document.getElementById("valorRetiro").value);
         if(!retiroUsd){
             alert("Por favor ingresa el saldo a retirar");
@@ -91,10 +94,10 @@ function retirarSaldo() {
             saldoActual = saldoActual - retiroUsd;
 
             //Aqui hago uso del localStorage para actualizar el saldo
-            alert(`Tu nuevo saldo es ${estandarDolaresAmericanos.format(saldoActual)} USD`);
             localStorage.setItem("saldoActual", JSON.stringify(saldoActual));
             actualizarSaldo();
             inicio();
+            addTransaction(transactionHistory.length + 1, operacion, monedaOperada, retiroUsd, "");
         }        
 }
 
