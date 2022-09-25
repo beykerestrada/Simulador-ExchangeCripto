@@ -16,14 +16,36 @@ btnLogin.addEventListener("click", () => {
   let userName = loginForm[0].value;
   let password = loginForm[1].value;
   if(userName && password){
+    
     sessionStorage.setItem("usuario", userName);
   //Redirige a la página de la billetera
-  location.href = "paginas/billetera.html";
-  }else {
-    alert("Por favor ingrese usuario y contraseña")
-  }
   
-});
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 1500,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+  Toast.fire({
+    icon: 'success',
+    title: 'Ingreso exitoso'
+  }).then(() => {
+    location.href = "paginas/billetera.html";
+  })
+  }else {
+    Swal.fire({
+      title: "Error!",
+      text: "Por favor ingresa usuario y contraseña",
+      icon: "error",
+      confirmButtonText: "Volver a intentar",
+    });
+  }
+})
 
 
 

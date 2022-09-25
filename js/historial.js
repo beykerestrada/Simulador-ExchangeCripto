@@ -1,5 +1,7 @@
 
 const contenedorHistorial = document.getElementById("contenedorHistorial");
+
+// Uso del operador || para verificar si hay algo guardado en localStorage
 const transactionHistory = JSON.parse(localStorage.getItem("transactionHistory")) ||[];
 
 class NewRecord {
@@ -19,31 +21,24 @@ function addTransaction(id, operacion, monedaOperada, cantidad, precio){
 }
 
 
-
-
-
-
-
-/*
-Esta parte me está costando, no he podido hacer que me aparezcan las transacciones en 
-el DOM. Como lo puedo hacer? 
+/* Rodrigo, esta era la parte que me estaba costando, para dibujar el historial
+Me sirvió mucho el consejo que me diste, pero cuando recargaba la página, se borraba el historial del DOM
+Entonces lo hice de esta manera y aproveché de usar el operador || para cumplir con la consigna del desafío
 */
 
+//Dibuja el historial en el DOM
+let transacciones = JSON.parse(localStorage.getItem("transactionHistory")) || [];
+transacciones.forEach(item => {
+    let estandarDolaresAmericanos = Intl.NumberFormat('en-US');
+    let itemHistorial = document.createElement("tr");
+    itemHistorial.innerHTML = `
+    <td>${item.id}</td>
+    <td>${item.operacion}</td>
+    <td>${item.monedaOperada}</td>
+    <td>$ ${estandarDolaresAmericanos.format(item.cantidad)}</td>
+    <td>${item.precio}</td>
+    `;
+    contenedorHistorial.append(itemHistorial);
+})
 
-function dibujarHistorial (){
-    contenedorHistorial.innerHTML = ""
-    localStorage.getItem("transactionHistory");
-    transactionHistory.forEach(elemento => {
-        let renglonesHistorial = document.createElement("tr");
-        renglonesHistorial.innerHTML = `
-        <td>${elemento.newTransaction.id}</td>
-        <td>${elemento.newTransaction.monedaAbonada}</td>
-        <td>${elemento.newTransaction.cantidad}</td>
-        <td>${elemento.newTransaction.precio}</td>
-        `;
-        contenedorHistorial.append(renglonesHistorial);
-    });
-    
-    
-}
 
