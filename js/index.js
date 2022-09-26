@@ -1,4 +1,4 @@
-// Deteccion de eventos para mostrar y esconder el modal que tiene como función el abono a la billetera
+// Deteccion de eventos para mostrar y esconder el modal de LogIn
 const open = document.getElementById("open");
 const close = document.getElementById("close");
 const btnLogin = document.getElementById("btn__login");
@@ -10,8 +10,7 @@ open.addEventListener("click", (e) => {
 
 //Funcion que otorga acceso a la billtera si se ingresa usuario y contraseña
 function logIn() {
-  //Redirige a la página de la billetera
-
+  // Mensaje de ingreso exitoso
   const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -31,6 +30,7 @@ function logIn() {
   })
 }
 
+// Si no se ingresa usuario y contraseña, arroja un mensaje de error
 function logInError() {
   Swal.fire({
     title: "Error!",

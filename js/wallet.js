@@ -113,6 +113,7 @@ for (let i = 0; i < 6; i++) {
 
 
 // Cambia la selección en la seccion Comprar/Vender según se presione la seccion compra o venta
+
 let btnCompraVenta;
 let contenedorCompraVenta; let contenedorFormCompra = document.getElementById("contenedorForm__compra");
 let contenedorFormVenta = document.getElementById("contenedorForm__venta");

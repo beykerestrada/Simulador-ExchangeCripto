@@ -86,11 +86,6 @@ function abonarSaldo() {
     }
 }
 
-
-
-
-
-
 //Invocacion de funcion desde la opcion Abonar en el menu de navegacion
 saldoAbonado.onclick = () => {
     abonarSaldo();
@@ -103,13 +98,9 @@ let btnAbonar = document.getElementById("btnAbonar");
 btnAbonar.onclick = () => {
     irAbonarDesdeWallet();
 }
-
-
-
 // FIN FLUJO DE ABONO DE SALDO
 
 //COMIENZO FLUJO DE RETIRO
-
 let retiroUsd;
 
 // Declaracion de funcion
