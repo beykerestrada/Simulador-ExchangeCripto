@@ -8,18 +8,10 @@ open.addEventListener("click", (e) => {
   modalContainer.classList.add("show");
 });
 
-btnLogin.addEventListener("click", () => {
-    
-  // Guardar en sessionStorage el dato del usuario recogido por el formulario de logIn
-  //obtener form desde el HTML
-  let loginForm = document.getElementById("loginForm").elements;
-  let userName = loginForm[0].value;
-  let password = loginForm[1].value;
-  if(userName && password){
-    
-    sessionStorage.setItem("usuario", userName);
+//Funcion que otorga acceso a la billtera si se ingresa usuario y contraseña
+function logIn() {
   //Redirige a la página de la billetera
-  
+
   const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -37,15 +29,28 @@ btnLogin.addEventListener("click", () => {
   }).then(() => {
     location.href = "paginas/billetera.html";
   })
-  }else {
-    Swal.fire({
-      title: "Error!",
-      text: "Por favor ingresa usuario y contraseña",
-      icon: "error",
-      confirmButtonText: "Volver a intentar",
-    });
-  }
+}
+
+function logInError() {
+  Swal.fire({
+    title: "Error!",
+    text: "Por favor ingresa usuario y contraseña",
+    icon: "error",
+    confirmButtonText: "Volver a intentar",
+  });
+}
+
+
+btnLogin.addEventListener("click", () => {
+
+  // Guardar en sessionStorage el dato del usuario recogido por el formulario de logIn
+  //obtener form desde el HTML
+  let loginForm = document.getElementById("loginForm").elements;
+  let userName = loginForm[0].value;
+  let password = loginForm[1].value;
+  sessionStorage.setItem("usuario", userName);
+
+  // Uso de operador ternario para validar si se ingresó usuario y contraseña
+  let accesoPermitido = userName && password ? true : false
+  accesoPermitido ? logIn() : logInError();
 })
-
-
-

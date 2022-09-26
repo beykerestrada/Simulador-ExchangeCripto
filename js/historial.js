@@ -5,17 +5,18 @@ const contenedorHistorial = document.getElementById("contenedorHistorial");
 const transactionHistory = JSON.parse(localStorage.getItem("transactionHistory")) ||[];
 
 class NewRecord {
-    constructor(id, operacion, monedaOperada, cantidad, precio) {
+    constructor(id, operacion, monedaOperada, cantidad, precio, fecha) {
         this.id = id;
         this.operacion = operacion;
         this.monedaOperada = monedaOperada;
         this.cantidad = cantidad;
         this.precio = precio;
+        this.fecha = fecha;
     }
 }
 
 function addTransaction(id, operacion, monedaOperada, cantidad, precio){
-    let newTransaction = new NewRecord(id, operacion, monedaOperada, cantidad, precio);
+    let newTransaction = new NewRecord(id, operacion, monedaOperada, cantidad, precio, new Date());
     transactionHistory.push(newTransaction);
     localStorage.setItem("transactionHistory", JSON.stringify(transactionHistory));
 }

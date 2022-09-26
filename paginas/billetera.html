@@ -125,14 +125,14 @@
                 </div>
                 <div class="sectionContainer">
                     <div class="btn__container">
-                        <div class="btnCompra__container btnActiveCompra">
+                        <div id="windowCompra" class="btnCompra__container">
                             <button type="button" id="compraVenta__1" class="btnCompraVenta">COMPRAR</button>
                         </div>
-                        <div class="btnVenta__container btnDisabled">
-                            <button type="button" id="compraVenta__1" class="btnCompraVenta">VENDER</button>
+                        <div id="windowVenta" class="btnVenta__container">
+                            <button type="button" id="compraVenta__2" class="btnCompraVenta">VENDER</button>
                         </div>
                     </div>
-                    <div class="contenedorForm contenedorForm__compra">
+                    <div id="contenedorForm__compra" class="contenedorForm">
                         <form method="dialog" class="formularioCompra">
                             <label for="gasto" class="labelCompra">¿Cuánto quieres comprar? </label>
                             <input id="gasto" class="gasto" type="number" required
@@ -149,7 +149,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="contenedorForm contenedorForm__venta">
+                    <div id="contenedorForm__venta" class="contenedorForm contenedorForm__disabled">
                         <form method="dialog" class="formularioCompra">
                             <label for="listaCripto" class="labelCompra">¿Qué cripto quieres vender? </label>
                             <select name="cripto" id="listaCripto" class="listaCripto">
