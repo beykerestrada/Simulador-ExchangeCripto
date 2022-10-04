@@ -4,6 +4,7 @@ const contenedorHistorial = document.getElementById("contenedorHistorial");
 // Uso del operador || para verificar si hay algo guardado en localStorage
 const transactionHistory = JSON.parse(localStorage.getItem("transactionHistory")) ||[];
 
+//Constructor para generar la transaccion nueva
 class NewRecord {
     constructor(id, operacion, monedaOperada, cantidad, precio, fecha) {
         this.id = id;
@@ -14,7 +15,7 @@ class NewRecord {
         this.fecha = fecha;
     }
 }
-
+// Agrega la transacción al local storage
 function addTransaction(id, operacion, monedaOperada, cantidad, precio){
     let newTransaction = new NewRecord(id, operacion, monedaOperada, cantidad, precio, new Date());
     transactionHistory.push(newTransaction);
