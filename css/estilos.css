@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
+    color: #000;
 }
 
 body {
@@ -290,16 +291,15 @@ input[type="number"]::-webkit-outer-spin-button {
 .tableSaldos {
     width: 100%;
     text-align: left;
+    padding-left: 20px;
 }
 .tableSaldos th{
     height: 50px;
-    padding: 20px;
     font-size: 25px;
 }
 .tableSaldos td{
     height: 50px;
     font-size: 25px;
-    padding-left: 20px;
 }
 
 .contenedorBtn {
@@ -558,4 +558,37 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .contenedorForm__disabled {
 display: none;
+}
+
+td p {
+    color: #000;
+    text-align: left;
+}
+
+.mostrarPrecio {
+    text-align: left;
+    margin: 0;
+}
+
+.mostrarPrecio p {
+    position: relative;
+    margin: 0;
+}
+
+.mostrarPrecio p sup {
+    display: inline-block;
+    position: absolute;
+    top: 25%;
+    right: 10%;
+    font-size: 12px;
+    font-weight: 400;
+    text-align: right;
+}
+
+.priceVariation__negative {
+    color: red;
+}
+
+.priceVariation__positive {
+    color: green;
 }

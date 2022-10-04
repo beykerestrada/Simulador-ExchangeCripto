@@ -3,8 +3,8 @@ const modalContainer = document.getElementById("modalContainer");
 const saldoAbonado = document.getElementById("btn__abonar");
 const saldoRetirado = document.getElementById("btn__retirar")
 let contenedorLogin = document.getElementById("contenedorLogin");
-let estandarDolaresAmericanos = Intl.NumberFormat('en-US');
-const actualizarSaldoUsd = document.getElementById("actualizarSaldoUsd");
+let estandarPesosChilenos = Intl.NumberFormat('es-CL');
+const actualizarSaldoClp = document.getElementById("actualizarSaldoClp");
 const saldos = [];
 
 
@@ -38,10 +38,10 @@ function operacionExitosa() {
 function actualizarSaldo() {
     let saldoBilletera = JSON.parse(localStorage.getItem("saldoActual"))
     if (!saldoBilletera) {
-        actualizarSaldoUsd.innerHTML = `$ 0`;
+        actualizarSaldoClp.innerHTML = `$ 0`;
     }
     else {
-        actualizarSaldoUsd.innerHTML = `$ ${estandarDolaresAmericanos.format(saldoBilletera)}`;
+        actualizarSaldoClp.innerHTML = `$ ${estandarPesosChilenos.format(saldoBilletera)}`;
     }
 
 }
@@ -51,7 +51,7 @@ actualizarSaldo();
 
 //COMIENZO FLUJO DE ABONO DE SALDO
 //declaracion de variables
-let saldoUsd;
+let saldoClp;
 let saldoActual;
 let monedaAbonada;
 let newTransaction;
@@ -60,15 +60,15 @@ let id = 0;
 // Declaracion de funcion
 function abonarSaldo() {
     operacion = "Abono";
-    monedaOperada = "USD";
-    saldoUsd = parseInt(document.getElementById("valorAbono").value);
-    if (!saldoUsd) {
+    monedaOperada = "CLP";
+    saldoClp = parseInt(document.getElementById("valorAbono").value);
+    if (!saldoClp) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
             text: 'Por favor ingresa la cantidad a abonar',
         })
-    } else if (saldoUsd < 10) {
+    } else if (saldoClp < 10000) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -76,12 +76,12 @@ function abonarSaldo() {
         })
     } else {
         saldoActual = JSON.parse(localStorage.getItem("saldoActual"));
-        saldoActual = saldoActual + saldoUsd;
+        saldoActual = saldoActual + saldoClp;
 
         //aqui se actualiza el saldo en local storage
         localStorage.setItem("saldoActual", JSON.stringify(saldoActual));
         actualizarSaldo();
-        addTransaction(transactionHistory.length + 1, operacion, monedaOperada, saldoUsd, "");
+        addTransaction(transactionHistory.length + 1, operacion, monedaOperada, saldoClp, "");
         operacionExitosa();
     }
 }
@@ -101,42 +101,42 @@ btnAbonar.onclick = () => {
 // FIN FLUJO DE ABONO DE SALDO
 
 //COMIENZO FLUJO DE RETIRO
-let retiroUsd;
+let retiroClp;
 
 // Declaracion de funcion
 function retirarSaldo() {
     saldoActual = JSON.parse(localStorage.getItem("saldoActual"));
-    monedaOperada = "USD";
+    monedaOperada = "CLP";
     operacion = "Retiro";
-    retiroUsd = parseInt(document.getElementById("valorRetiro").value);
-    if (!retiroUsd) {
+    retiroClp = parseInt(document.getElementById("valorRetiro").value);
+    if (!retiroClp) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
             text: 'Ingresa un monto válido',
         })
-    } else if (retiroUsd < 10) {
+    } else if (retiroClp < 10000) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'El mínimo a retirar es de $10',
+            text: 'El mínimo a retirar es de $10000',
         })
 
-    } else if (retiroUsd > saldoActual) {
+    } else if (retiroClp > saldoActual) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: `Saldo insuficiente, ingresa un monto menor a $${estandarDolaresAmericanos.format(saldoActual) + 1}`,
+            text: `Saldo insuficiente, ingresa un monto menor a $${estandarPesosChilenos.format(saldoActual) + 1}`,
         })
     }
 
     else {
-        saldoActual = saldoActual - retiroUsd;
+        saldoActual = saldoActual - retiroClp;
 
         //Aqui hago uso del localStorage para actualizar el saldo
         localStorage.setItem("saldoActual", JSON.stringify(saldoActual));
         actualizarSaldo();
-        addTransaction(transactionHistory.length + 1, operacion, monedaOperada, retiroUsd, "");
+        addTransaction(transactionHistory.length + 1, operacion, monedaOperada, retiroClp, "");
         operacionExitosa();
     }
 }

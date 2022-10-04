@@ -68,12 +68,57 @@
                         </thead>
                         <tbody id="items">
                             <tr>
-                                <td>USD</td>
-                                <td id="actualizarSaldoUsd"></td>
-                                <td id="actualizarPrecioUsd"></td>
+                                <td>CLP</td>
+                                <td id="actualizarSaldoClp"></td>
+                                <td id="actualizarPrecioClp"></td>
                                 <td class="contenedorBtn">
                                     <button type="button" class="abonar" id="btnAbonar">Abonar</button>
                                     <button type="button" class="retirar" id="btnRetirar">Retirar</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>BTC</td>
+                                <td id="actualizarSaldoBtc"></td>
+                                <td id="actualizarPrecioBtc" class="mostrarPrecio"></td>
+                                <td class="contenedorBtn">
+                                    <button type="button" class="abonar" id="btnAbonar">Comprar</button>
+                                    <button type="button" class="retirar" id="btnRetirar">Vender</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>ETH</td>
+                                <td id="actualizarSaldoEth"></td>
+                                <td id="actualizarPrecioEth" class="mostrarPrecio"></td>
+                                <td class="contenedorBtn">
+                                    <button type="button" class="abonar" id="btnAbonar">Comprar</button>
+                                    <button type="button" class="retirar" id="btnRetirar">Vender</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>USDC</td>
+                                <td id="actualizarSaldoUsdc"></td>
+                                <td id="actualizarPrecioUsdc" class="mostrarPrecio"></td>
+                                <td class="contenedorBtn">
+                                    <button type="button" class="abonar" id="btnAbonar">Comprar</button>
+                                    <button type="button" class="retirar" id="btnRetirar">Vender</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>LTC</td>
+                                <td id="actualizarSaldoLtc"></td>
+                                <td id="actualizarPrecioLtc" class="mostrarPrecio"></td>
+                                <td class="contenedorBtn">
+                                    <button type="button" class="abonar" id="btnAbonar">Comprar</button>
+                                    <button type="button" class="retirar" id="btnRetirar">Vender</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>BCH</td>
+                                <td id="actualizarSaldoBch"></td>
+                                <td id="actualizarPrecioBch" class="mostrarPrecio"></td>
+                                <td class="contenedorBtn">
+                                    <button type="button" class="abonar" id="btnAbonar">Comprar</button>
+                                    <button type="button" class="retirar" id="btnRetirar">Vender</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -93,7 +138,7 @@
                     <form method="dialog"  class="formularioAbono">
                         <label class="formulario__label">Ingresa la cantidad
                         </label>
-                        <input class="gasto" type="number" min="10" id="valorAbono" class="valorAbono" placeholder="Monto mínimo: 10 USD" required>
+                        <input class="gasto" type="number" min="10000" id="valorAbono" class="valorAbono" placeholder="Monto mínimo: 10000 CLP" required>
                         <div class="formulario__botones">
                             <button type="button"  id="btn__abonar" class="btn">Abonar</button>
                             <input type="button" value="Cancelar" id="cancelar__1" class="btn__secundario">
@@ -110,7 +155,7 @@
                     <form method="dialog"  class="formularioAbono">
                         <label class="formulario__label">Ingresa la cantidad
                         </label>
-                        <input class="gasto" type="number" min="10" id="valorRetiro" class="valorAbono" placeholder="Monto mínimo: 10 USD" required>
+                        <input class="gasto" type="number" min="10000" id="valorRetiro" class="valorAbono" placeholder="Monto mínimo: 10000 CLP" required>
                         <div class="formulario__botones">
                             <button type="button"  id="btn__retirar" class="btn">Retirar</button>
                             <input type="button" value="Cancelar" id="cancelar__2" class="btn__secundario">
@@ -136,12 +181,14 @@
                         <form method="dialog" class="formularioCompra">
                             <label for="gasto" class="labelCompra">¿Cuánto quieres comprar? </label>
                             <input id="gasto" class="gasto" type="number" required
-                                placeholder="Ingresa la cantidad en Dolares">
+                                placeholder="Ingresa la cantidad en Pesos">
                             <label for="listaCripto" class="labelCompra">¿Qué cripto quieres comprar? </label>
                             <select name="cripto" id="listaCripto" class="listaCripto">
                                 <option value="Bitcoin" selected>Bitcoin (BTC)</option>
                                 <option value="Ethereum">Ethereum (ETH)</option>
                                 <option value="USD Coin">USD Coin (USDC)</option>
+                                <option value="Litecoin">Litecoin (LTC)</option>
+                                <option value="Bitcoin Cash">Bitcoin Cash (BCH)</option>
                             </select>
                             <div class="formulario__botones">
                                 <button type="button" id="btn__confirmarCompra" class="btn">Confirmar</button>
@@ -156,6 +203,8 @@
                                 <option value="Bitcoin" selected>Bitcoin (BTC)</option>
                                 <option value="Ethereum">Ethereum (ETH)</option>
                                 <option value="USD Coin">USD Coin (USDC)</option>
+                                <option value="Litecoin">Litecoin (LTC)</option>
+                                <option value="Bitcoin Cash">Bitcoin Cash (BCH)</option>
                             </select>
                             <label for="gasto" class="labelCompra">¿Cuánto quieres vender? </label>
                             <input id="gasto" class="gasto" type="number" required placeholder="Ingresa la cantidad">
@@ -208,7 +257,7 @@
     <script src="../js/wallet.js"></script>
     <script src="../js/historial.js"></script>
     <script src="../js/operaciones.js"></script>
-    
+    <script src="../js/api.js"></script>
 </body>
 
 </html>
