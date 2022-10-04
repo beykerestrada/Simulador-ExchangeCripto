@@ -1,7 +1,7 @@
 
 
 // Url pricipal de la API, el parametro [path] es lo que se debe actualizar según el dato requerido
-const baseUrl = `https://www.buda.com/api/v2/[path].json`
+const baseUrl = `https://www.buda.com/api/v2/[path].json`;
 
 // Función que obtiene los datos de cada cripto: último precio y la fluctuacion de las últimas 24h
 

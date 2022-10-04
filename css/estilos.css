@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
-    color: #000;
 }
 
 body {
@@ -14,6 +13,9 @@ body {
     background: linear-gradient(to right, #3a607377, #16222aea), url(../img/bitcoin.jpg);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
+}
+span {
+    color: #FFC857;
 }
 
 .body__billetera {
