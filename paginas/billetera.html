@@ -179,9 +179,6 @@
                     </div>
                     <div id="contenedorForm__compra" class="contenedorForm">
                         <form method="dialog" class="formularioCompra">
-                            <label for="gasto" class="labelCompra">¿Cuánto quieres gastar? </label>
-                            <input id="valorCompra" class="gasto" type="number" required
-                                placeholder="Ingresa la cantidad en Pesos">
                             <label for="listaCompra" class="labelCompra">¿Qué cripto quieres comprar? </label>
                             <select name="cripto" id="listaCompra" class="listaCripto">
                                 <option value="Btc" selected>Bitcoin (BTC)</option>
@@ -190,6 +187,9 @@
                                 <option value="Ltc">Litecoin (LTC)</option>
                                 <option value="Bch">Bitcoin Cash (BCH)</option>
                             </select>
+                            <label for="gasto" class="labelCompra">¿Cuánto quieres gastar? </label>
+                            <input id="valorCompra" class="gasto" type="number" required
+                                placeholder="Ingresa la cantidad en Pesos">
                             <div class="formulario__botones">
                                 <button type="button" id="btn__confirmarCompra" class="btn">Confirmar</button>
                                 <input type="button" value="Cancelar" id="cancelar__3" class="btn__secundario">

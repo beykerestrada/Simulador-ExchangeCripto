@@ -195,14 +195,14 @@ for (let i = 0; i < 6; i++) {
 //COMIENZO DEL FLUJO DE COMPRA
 
 //Funciones que activan la compra de alguna cripto, según la opción de la lista que se elija
-let saldoBtc;
+let saldoBilleteraBtc;
 function updateSaldoBtc() {
-    saldoBtc = JSON.parse(localStorage.getItem("saldoBtc"));
+    saldoBilleteraBtc = JSON.parse(localStorage.getItem("saldoBtc"));
 
-    if (!saldoBtc) {
+    if (!saldoBilleteraBtc) {
         actualizarSaldoBtc.innerHTML = `$ 0`;
     } else {
-        actualizarSaldoBtc.innerHTML = `&#8383; ${saldoBtc}`;
+        actualizarSaldoBtc.innerHTML = `&#8383; ${saldoBilleteraBtc}`;
     }
 }
 updateSaldoBtc();
@@ -260,7 +260,7 @@ function comprarBtc() {
     let cantidadRecibida = valorCompra / valorBtc;
     console.log(cantidadRecibida);
 
-    saldoBtc = JSON.parse(localStorage.getItem(saldoBtc));
+    let saldoBtc = JSON.parse(localStorage.getItem("saldoBtc"));
     saldoBtc = parseFloat(saldoBtc + cantidadRecibida);
     saldoBtc = saldoBtc.toFixed(8);
 
@@ -339,7 +339,7 @@ function comprarLtc() {
 
     actualizarSaldo();
     updateSaldoUsdc();
-    addCryptoTransaction(transactionHistory.length + 1, operacion, monedaOperada, cantidadRecibida, `$ ${estandarPesosChilenos.format(valorUsdc)}`);
+    addCryptoTransaction(transactionHistory.length + 1, operacion, monedaOperada, cantidadRecibida, `$ ${estandarPesosChilenos.format(valorLtc)}`);
     operacionExitosa();
 }
 
@@ -361,7 +361,7 @@ function comprarBch() {
 
     actualizarSaldo();
     updateSaldoUsdc();
-    addCryptoTransaction(transactionHistory.length + 1, operacion, monedaOperada, cantidadRecibida, `$ ${estandarPesosChilenos.format(valorUsdc)}`);
+    addCryptoTransaction(transactionHistory.length + 1, operacion, monedaOperada, cantidadRecibida, `$ ${estandarPesosChilenos.format(valorBch)}`);
     operacionExitosa();
 }
 
@@ -431,3 +431,10 @@ function comprarMoneda() {
         }
     }
 }
+
+let inputCompra = document.getElementById("valorCompra");
+inputCompra.addEventListener("keyup", function (event) {
+    if (event.key === "Enter") {
+        comprarMoneda();
+    }
+});
