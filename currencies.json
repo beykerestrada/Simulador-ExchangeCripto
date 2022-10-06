@@ -1,0 +1,7 @@
+[
+    {"market_id":"BTC-CLP", "base_price":"18932541.0", "price_variation_24h":"-0.014"},
+    {"market_id":"ETH-CLP", "base_price":"1281432.0", "price_variation_24h":"0.01"},
+    {"market_id":"USDC-CLP", "base_price":"954.0", "price_variation_24h":"0.011"},
+    {"market_id":"LTC-CLP", "base_price":"51161.0", "price_variation_24h":"-0.025"},
+    {"market_id":"BCH-CLP", "base_price":"116671.0", "price_variation_24h":"0.027"}
+]

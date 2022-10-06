@@ -258,6 +258,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .contenedorFormImg {
     width: 90%;
+    height: 100%;
     display: grid;
     place-items: center;
 }
@@ -315,7 +316,6 @@ input[type="number"]::-webkit-outer-spin-button {
     margin: 0;
 }
 .main {
-    
     width: 70%;
 }
 .compra {
@@ -430,7 +430,7 @@ input[type="number"]::-webkit-outer-spin-button {
     width: 70%;
 }
 .billetera {
-    height: 100%;
+
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -505,7 +505,7 @@ input[type="number"]::-webkit-outer-spin-button {
 /*ESTILOS SECCION COMPRAR/VENDER*/
 
 .sectionContainer {
-    width: 80%;
+    width: 90%;
     height: 80%;
     margin: auto auto;
     display: flex;

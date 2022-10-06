@@ -1,4 +1,5 @@
 // Obtiene el dato del nombre del usuario desde sessionStorage para agregarlo al header
+let contenedorLogin = document.getElementById("contenedorLogin");
 let usuario = sessionStorage.getItem("usuario");
 let nombreUsuario = document.createElement("div");
 nombreUsuario.innerHTML = `

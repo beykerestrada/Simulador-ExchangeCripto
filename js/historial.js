@@ -16,8 +16,14 @@ class NewRecord {
     }
 }
 // Agrega la transacción al local storage
-function addTransaction(id, operacion, monedaOperada, cantidad, precio){
-    let newTransaction = new NewRecord(id, operacion, monedaOperada, cantidad, precio, new Date());
+function addFiatTransaction(id, operacion, monedaOperada, cantidad, precio){
+    let newTransaction = new NewRecord(id, operacion, monedaOperada, cantidad, precio);
+    transactionHistory.push(newTransaction);
+    localStorage.setItem("transactionHistory", JSON.stringify(transactionHistory));
+}
+
+function addCryptoTransaction(id, operacion, monedaOperada, cantidad, precio){
+    let newTransaction = new NewRecord(id, operacion, monedaOperada, parseFloat(cantidad).toFixed(8), precio);
     transactionHistory.push(newTransaction);
     localStorage.setItem("transactionHistory", JSON.stringify(transactionHistory));
 }
@@ -31,13 +37,12 @@ Entonces lo hice de esta manera y aproveché de usar el operador || para cumplir
 //Dibuja el historial en el DOM
 let transacciones = JSON.parse(localStorage.getItem("transactionHistory")) || [];
 transacciones.forEach(item => {
-    let estandarDolaresAmericanos = Intl.NumberFormat('en-US');
     let itemHistorial = document.createElement("tr");
     itemHistorial.innerHTML = `
     <td>${item.id}</td>
     <td>${item.operacion}</td>
     <td>${item.monedaOperada}</td>
-    <td>$ ${estandarDolaresAmericanos.format(item.cantidad)}</td>
+    <td>${item.cantidad}</td>
     <td>${item.precio}</td>
     `;
     contenedorHistorial.append(itemHistorial);
