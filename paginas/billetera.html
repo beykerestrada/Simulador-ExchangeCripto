@@ -79,8 +79,8 @@
                                 <td id="actualizarSaldoBtc"></td>
                                 <td id="actualizarPrecioBtc" class="mostrarPrecio"></td>
                                 <td class="contenedorBtn">
-                                    <button type="button" class="abonar" id="btnAbonar">Comprar</button>
-                                    <button type="button" class="retirar" id="btnRetirar">Vender</button>
+                                    <button type="button" class="abonar" id="btnComprar__1">Comprar</button>
+                                    <button type="button" class="retirar" id="btnVender__1">Vender</button>
                                 </td>
                             </tr>
                             <tr>
@@ -88,8 +88,8 @@
                                 <td id="actualizarSaldoEth"></td>
                                 <td id="actualizarPrecioEth" class="mostrarPrecio"></td>
                                 <td class="contenedorBtn">
-                                    <button type="button" class="abonar" id="btnAbonar">Comprar</button>
-                                    <button type="button" class="retirar" id="btnRetirar">Vender</button>
+                                    <button type="button" class="abonar" id="btnComprar__2">Comprar</button>
+                                    <button type="button" class="retirar" id="btnVender__2">Vender</button>
                                 </td>
                             </tr>
                             <tr>
@@ -97,8 +97,8 @@
                                 <td id="actualizarSaldoUsdc"></td>
                                 <td id="actualizarPrecioUsdc" class="mostrarPrecio"></td>
                                 <td class="contenedorBtn">
-                                    <button type="button" class="abonar" id="btnAbonar">Comprar</button>
-                                    <button type="button" class="retirar" id="btnRetirar">Vender</button>
+                                    <button type="button" class="abonar" id="btnComprar__3">Comprar</button>
+                                    <button type="button" class="retirar" id="btnVender__3">Vender</button>
                                 </td>
                             </tr>
                             <tr>
@@ -106,8 +106,8 @@
                                 <td id="actualizarSaldoLtc"></td>
                                 <td id="actualizarPrecioLtc" class="mostrarPrecio"></td>
                                 <td class="contenedorBtn">
-                                    <button type="button" class="abonar" id="btnAbonar">Comprar</button>
-                                    <button type="button" class="retirar" id="btnRetirar">Vender</button>
+                                    <button type="button" class="abonar" id="btnComprar__4">Comprar</button>
+                                    <button type="button" class="retirar" id="btnVender__4">Vender</button>
                                 </td>
                             </tr>
                             <tr>
@@ -115,8 +115,8 @@
                                 <td id="actualizarSaldoBch"></td>
                                 <td id="actualizarPrecioBch" class="mostrarPrecio"></td>
                                 <td class="contenedorBtn">
-                                    <button type="button" class="abonar" id="btnAbonar">Comprar</button>
-                                    <button type="button" class="retirar" id="btnRetirar">Vender</button>
+                                    <button type="button" class="abonar" id="btnComprar__5">Comprar</button>
+                                    <button type="button" class="retirar" id="btnVender__5">Vender</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -181,11 +181,11 @@
                         <form method="dialog" class="formularioCompra">
                             <label for="listaCompra" class="labelCompra">¿Qué cripto quieres comprar? </label>
                             <select name="cripto" id="listaCompra" class="listaCripto">
-                                <option value="Btc" selected>Bitcoin (BTC)</option>
-                                <option value="Eth">Ethereum (ETH)</option>
-                                <option value="Usdc">USD Coin (USDC)</option>
-                                <option value="Ltc">Litecoin (LTC)</option>
-                                <option value="Bch">Bitcoin Cash (BCH)</option>
+                                <option id="optionCompra__Btc" value="Btc" selected>Bitcoin (BTC)</option>
+                                <option id="optionCompra__Eth" value="Eth">Ethereum (ETH)</option>
+                                <option id="optionCompra__Usdc" value="Usdc">USD Coin (USDC)</option>
+                                <option id="optionCompra__Ltc" value="Ltc">Litecoin (LTC)</option>
+                                <option id="optionCompra__Bch" value="Bch">Bitcoin Cash (BCH)</option>
                             </select>
                             <label for="gasto" class="labelCompra">¿Cuánto quieres gastar? </label>
                             <input id="valorCompra" class="gasto" type="number" required
@@ -200,17 +200,17 @@
                         <form method="dialog" class="formularioCompra">
                             <label for="listaVenta" class="labelCompra">¿Qué cripto quieres vender? </label>
                             <select name="cripto" id="listaCripto" class="listaCripto">
-                                <option value="monedaVendida__1" selected>Bitcoin (BTC)</option>
-                                <option value="monedaVendida__2">Ethereum (ETH)</option>
-                                <option value="monedaVendida__3">USD Coin (USDC)</option>
-                                <option value="monedaVendida__4">Litecoin (LTC)</option>
-                                <option value="monedaVendida__5">Bitcoin Cash (BCH)</option>
+                                <option id="optionVenta__Btc" value="Btc">Bitcoin (BTC)</option>
+                                <option id="optionVenta__Eth" value="Eth">Ethereum (ETH)</option>
+                                <option id="optionVenta__Usdc" value="Usdc">USD Coin (USDC)</option>
+                                <option id="optionVenta__Ltc" value="Ltc">Litecoin (LTC)</option>
+                                <option id="optionVenta__Bch" value="Bch">Bitcoin Cash (BCH)</option>
                             </select>
-                            <label for="gasto" class="labelCompra">¿Cuántos pesos quieres recibir? </label>
-                            <input id="valorVenta" class="gasto" type="number" required placeholder="Ingresa la cantidad">
+                            <label for="gasto" class="labelCompra">¿Cuánto quieres vender? </label>
+                            <input id="valorVenta" class="gasto" type="number" step="0.00000001"  required placeholder="Ingresa la cantidad en cripto">
 
                             <div class="formulario__botones">
-                                <button type="button" id="btn__confirmarCompra" class="btn">Confirmar</button>
+                                <button type="button" id="btn__confirmarVenta" class="btn">Confirmar</button>
                                 <input type="button" value="Cancelar" id="cancelar__4" class="btn__secundario">
                             </div>
                         </form>

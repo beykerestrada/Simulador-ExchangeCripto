@@ -124,12 +124,7 @@ let btnWindowCompra = document.getElementById("compraVenta__1");
 let btnWindowVenta = document.getElementById("compraVenta__2");
 
 
-/* 
-Rodrigo, aquí tuve que harcodearlo un poco ya que cuando seleccionaba venta, me modificaba los estilos correctamente
-segun la clase agregada, pero al volver a Compra, me dejaba algunos estilos de la clase que debía remover
 
-¿Habrá alguna manera para simplificarlo? 
-*/
 
 for (let i = 0; i < 3; i++) {
     btnCompraVenta = document.getElementById(`compraVenta__${i}`)
@@ -138,13 +133,9 @@ for (let i = 0; i < 3; i++) {
         btnCompraVenta.onclick = () => {
             contenedorFormCompra.style.display = "flex";
             contenedorFormVenta.style.display = "none";
-
-            // Estas son las clases que debía agregar o remover
             windowCompra.classList.remove("btnDisabled");
             windowCompra.classList.add("btnActiveCompra");
             windowVenta.classList.add("btnDisabled");
-
-            // Y así tuve que hardcodearlo
             windowCompra.style.borderTop = "3px solid #255f85";
             windowCompra.style.borderRight = "1px solid #ddd";
             windowVenta.style.border = "none";
@@ -155,12 +146,9 @@ for (let i = 0; i < 3; i++) {
         btnCompraVenta.onclick = () => {
             contenedorFormVenta.style.display = "flex";
             contenedorFormCompra.style.display = "none";
-            // Lo mismo en este caso
             windowVenta.classList.remove("btnDisabled")
             windowVenta.classList.add("btnActiveVenta");
             windowCompra.classList.add("btnDisabled");
-
-            // Y aquí
             windowVenta.style.borderTop = "3px solid #c3451b";
             windowVenta.style.borderRight = "1px solid #ddd";
             windowCompra.style.border = "none";

@@ -29,10 +29,6 @@ function addCryptoTransaction(id, operacion, monedaOperada, cantidad, precio){
 }
 
 
-/* Rodrigo, esta era la parte que me estaba costando, para dibujar el historial
-Me sirvió mucho el consejo que me diste, pero cuando recargaba la página, se borraba el historial del DOM
-Entonces lo hice de esta manera y aproveché de usar el operador || para cumplir con la consigna del desafío
-*/
 
 //Dibuja el historial en el DOM
 let transacciones = JSON.parse(localStorage.getItem("transactionHistory")) || [];
