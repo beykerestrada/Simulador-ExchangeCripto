@@ -100,12 +100,14 @@ function updatePriceBtc() {
             //Renderiza el precio actual y la variacion con respecto al precio de las últimas 24 horas
             let contenedor = document.getElementById("actualizarPrecioBtc");
             contenedor.innerHTML = "";
-            let lista = document.createElement("p");
-            lista.innerHTML = `$ ${estandarPesosChilenos.format(precioBtc)}<sup id="supBtc">  24h: ${variationBtc}%</sup>`
-            contenedor.append(lista);
+            contenedor.innerHTML = `$ ${estandarPesosChilenos.format(precioBtc)}`;
+            let variacion = document.getElementById("variationBtc");
+            variacion.innerHTML = "";
+            variacion.innerHTML = `24h: ${variationBtc}%`
+            
 
             //Colorea el texto de verde si la cripto subió de precio o de rojo si la cripto bajó de precio
-            let priceVariation = document.getElementById("supBtc");
+            let priceVariation = document.getElementById("variationBtc");
             if (variationBtc < 0) {
                 priceVariation.classList.add("priceVariation__negative");
             } else if (variationBtc >= 0) {
@@ -132,12 +134,13 @@ function updatePriceEth() {
             //Renderiza el precio actual y la variacion con respecto al precio de las últimas 24 horas
             let contenedor = document.getElementById("actualizarPrecioEth");
             contenedor.innerHTML = "";
-            let lista = document.createElement("p");
-            lista.innerHTML = `$ ${estandarPesosChilenos.format(precioEth)}<sup id= "supEth">  24h: ${variationEth}%</sup>`
-            contenedor.append(lista);
+            contenedor.innerHTML = `$ ${estandarPesosChilenos.format(precioEth)}`;
+            let variacion = document.getElementById("variationEth");
+            variacion.innerHTML = "";
+            variacion.innerHTML = `24h: ${variationEth}%`
 
             //Colorea el texto de verde si la cripto subió de precio o de rojo si la cripto bajó de precio
-            let priceVariation = document.getElementById("supEth");
+            let priceVariation = document.getElementById("variationEth");
             if (variationEth < 0) {
                 priceVariation.classList.add("priceVariation__negative");
             } else if (variationEth >= 0) {
@@ -163,12 +166,13 @@ function updatePriceUsdc() {
             //Renderiza el precio actual y la variacion con respecto al precio de las últimas 24 horas
             let contenedor = document.getElementById("actualizarPrecioUsdc");
             contenedor.innerHTML = "";
-            let lista = document.createElement("p");
-            lista.innerHTML = `$ ${estandarPesosChilenos.format(precioUsdc)}<sup id="supUsdc">  24h: ${variationUsdc}%</sup>`
-            contenedor.append(lista);
+            contenedor.innerHTML = `$ ${estandarPesosChilenos.format(precioUsdc)}`;
+            let variacion = document.getElementById("variationUsdc");
+            variacion.innerHTML = "";
+            variacion.innerHTML = `24h: ${variationUsdc}%`
 
             //Colorea el texto de verde si la cripto subió de precio o de rojo si la cripto bajó de precio
-            let priceVariation = document.getElementById("supUsdc");
+            let priceVariation = document.getElementById("variationUsdc");
             if (variationUsdc < 0) {
                 priceVariation.classList.add("priceVariation__negative");
             } else if (variationUsdc >= 0) {
@@ -194,12 +198,13 @@ function updatePriceLtc() {
             //Renderiza el precio actual y la variacion con respecto al precio de las últimas 24 horas
             let contenedor = document.getElementById("actualizarPrecioLtc");
             contenedor.innerHTML = "";
-            let lista = document.createElement("p");
-            lista.innerHTML = `$ ${estandarPesosChilenos.format(precioLtc)}<sup id="supLtc">  24h: ${variationLtc}%</sup>`
-            contenedor.append(lista);
+            contenedor.innerHTML = `$ ${estandarPesosChilenos.format(precioLtc)}`;
+            let variacion = document.getElementById("variationLtc");
+            variacion.innerHTML = "";
+            variacion.innerHTML = `24h: ${variationLtc}%`
 
             //Colorea el texto de verde si la cripto subió de precio o de rojo si la cripto bajó de precio
-            let priceVariation = document.getElementById("supLtc");
+            let priceVariation = document.getElementById("variationLtc");
             if (variationLtc < 0) {
                 priceVariation.classList.add("priceVariation__negative");
             } else if (variationLtc >= 0) {
@@ -225,12 +230,13 @@ function updatePriceBch() {
             //Renderiza el precio actual y la variacion con respecto al precio de las últimas 24 horas
             let contenedor = document.getElementById("actualizarPrecioBch");
             contenedor.innerHTML = "";
-            let lista = document.createElement("p");
-            lista.innerHTML = `$ ${estandarPesosChilenos.format(precioBch)}<sup id="supBch">  24h: ${variationBch}%</sup>`
-            contenedor.append(lista);
+            contenedor.innerHTML = `$ ${estandarPesosChilenos.format(precioBch)}`;
+            let variacion = document.getElementById("variationBch");
+            variacion.innerHTML = "";
+            variacion.innerHTML = `24h: ${variationBch}%`
 
             //Colorea el texto de verde si la cripto subió de precio o de rojo si la cripto bajó de precio
-            let priceVariation = document.getElementById("supBch");
+            let priceVariation = document.getElementById("variationBch");
             if (variationBch < 0) {
                 priceVariation.classList.add("priceVariation__negative");
             } else if (variationBch >= 0) {

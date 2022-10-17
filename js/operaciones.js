@@ -251,7 +251,7 @@ function updateSaldoUsdc() {
     if (!saldoBilleteraUsdc) {
         actualizarSaldoUsdc.innerHTML = `$ 0`;
     } else {
-        actualizarSaldoUsdc.innerHTML = `$ ${saldoBilleteraUsdc}`;
+        actualizarSaldoUsdc.innerHTML = `$ ${estandarPesosChilenos.format(saldoBilleteraUsdc)}`;
     }
 }
 updateSaldoUsdc();
@@ -330,7 +330,7 @@ function comprarUsdc() {
 
     let saldoUsdc = JSON.parse(localStorage.getItem("saldoUsdc"));
     saldoUsdc = parseFloat(saldoUsdc + cantidadRecibida);
-    saldoUsdc = parseFloat(saldoUsdc.toFixed(8));
+    saldoUsdc = parseFloat(saldoUsdc.toFixed(2));
 
     saldoActual = JSON.parse(localStorage.getItem("saldoActual"));
     saldoActual = saldoActual - valorCompra;

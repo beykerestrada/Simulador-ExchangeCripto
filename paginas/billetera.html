@@ -12,16 +12,15 @@
 </head>
 
 <body class="body__billetera">
-        <header id="header" class="header">
-            <div class="cabecera">
-                <div class="contenedorLogo">
-                    <h1 class="logo">Crypto Exchange</h1>
-                </div>
-                <div id="contenedorLogin">
-                </div>
+    <header id="header" class="header">
+        <div class="cabecera">
+            <div class="contenedorLogo">
+                <h1 class="logo">Crypto Exchange</h1>
             </div>
-        </header>
-
+            <div id="contenedorLogin">
+            </div>
+        </div>
+    </header>
     <div class="flexContainer">
         <nav class="navegacion">
             <ul class="navegacion__ul">
@@ -61,62 +60,67 @@
                                 <th id="table__moneda">Moneda</th>
                                 <th id="table__cantidad">Saldo Disponible</th>
                                 <th id="table__precio">Precio Actual</th>
+                                <th id="table__variation">Variación</th>
                                 <th id="table__botones" class="contenedorBtn"></th>
                             </tr>
                         </thead>
                         <tbody id="items">
                             <tr>
                                 <td>CLP</td>
-                                <td id="actualizarSaldoClp"></td>
-                                <td id="actualizarPrecioClp"></td>
+                                <td id="actualizarSaldoClp" colspan="3"></td>
                                 <td class="contenedorBtn">
-                                    <button type="button" class="abonar" id="btnAbonar">Abonar</button>
-                                    <button type="button" class="retirar" id="btnRetirar">Retirar</button>
+                                    <button type="button" class="btnBilletera" id="btnAbonar">Abonar</button>
+                                    <button type="button" class="btnBilletera" id="btnRetirar">Retirar</button>
                                 </td>
                             </tr>
                             <tr>
                                 <td>BTC</td>
                                 <td id="actualizarSaldoBtc"></td>
                                 <td id="actualizarPrecioBtc" class="mostrarPrecio"></td>
+                                <td id="variationBtc" class="variation"></td>
                                 <td class="contenedorBtn">
-                                    <button type="button" class="abonar" id="btnComprar__1">Comprar</button>
-                                    <button type="button" class="retirar" id="btnVender__1">Vender</button>
+                                    <button type="button" class="btnBilletera" id="btnComprar__1">Comprar</button>
+                                    <button type="button" class="btnBilletera" id="btnVender__1">Vender</button>
                                 </td>
                             </tr>
                             <tr>
                                 <td>ETH</td>
                                 <td id="actualizarSaldoEth"></td>
                                 <td id="actualizarPrecioEth" class="mostrarPrecio"></td>
+                                <td id="variationEth" class="variation"></td>
                                 <td class="contenedorBtn">
-                                    <button type="button" class="abonar" id="btnComprar__2">Comprar</button>
-                                    <button type="button" class="retirar" id="btnVender__2">Vender</button>
+                                    <button type="button" class="btnBilletera" id="btnComprar__2">Comprar</button>
+                                    <button type="button" class="btnBilletera" id="btnVender__2">Vender</button>
                                 </td>
                             </tr>
                             <tr>
                                 <td>USDC</td>
                                 <td id="actualizarSaldoUsdc"></td>
                                 <td id="actualizarPrecioUsdc" class="mostrarPrecio"></td>
+                                <td id="variationUsdc" class="variation"></td>
                                 <td class="contenedorBtn">
-                                    <button type="button" class="abonar" id="btnComprar__3">Comprar</button>
-                                    <button type="button" class="retirar" id="btnVender__3">Vender</button>
+                                    <button type="button" class="btnBilletera" id="btnComprar__3">Comprar</button>
+                                    <button type="button" class="btnBilletera" id="btnVender__3">Vender</button>
                                 </td>
                             </tr>
                             <tr>
                                 <td>LTC</td>
                                 <td id="actualizarSaldoLtc"></td>
                                 <td id="actualizarPrecioLtc" class="mostrarPrecio"></td>
+                                <td id="variationLtc" class="variation"></td>
                                 <td class="contenedorBtn">
-                                    <button type="button" class="abonar" id="btnComprar__4">Comprar</button>
-                                    <button type="button" class="retirar" id="btnVender__4">Vender</button>
+                                    <button type="button" class="btnBilletera" id="btnComprar__4">Comprar</button>
+                                    <button type="button" class="btnBilletera" id="btnVender__4">Vender</button>
                                 </td>
                             </tr>
                             <tr>
                                 <td>BCH</td>
                                 <td id="actualizarSaldoBch"></td>
                                 <td id="actualizarPrecioBch" class="mostrarPrecio"></td>
+                                <td id="variationBch" class="variation"></td>
                                 <td class="contenedorBtn">
-                                    <button type="button" class="abonar" id="btnComprar__5">Comprar</button>
-                                    <button type="button" class="retirar" id="btnVender__5">Vender</button>
+                                    <button type="button" class="btnBilletera" id="btnComprar__5">Comprar</button>
+                                    <button type="button" class="btnBilletera" id="btnVender__5">Vender</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -128,45 +132,41 @@
                 </div>
             </section>
 
-            <section id="abono" class="billetera compra">
-                <div class="contenedortituloCompra">
-                    <h2 class="tituloCompra">Abonar Saldo</h2>
+            <section id="abono" class="billetera billetera__2">
+                <div class="contenedortituloBilletera">
+                    <h2 class="tituloBilletera">Abonar Saldo</h2>
                 </div>
-                <div class="contenedorForm">
-                    <form method="dialog" class="formularioAbono">
-                        <label class="formulario__label">Ingresa la cantidad en CLP
-                        </label>
-                        <input class="gasto" type="number" min="2000" id="valorAbono" class="valorAbono"
-                            placeholder="Monto mínimo: 2000 CLP" required>
-                        <div class="formulario__botones">
-                            <button type="button" id="btn__abonar" class="btn">Abonar</button>
-                            <input type="button" value="Cancelar" id="cancelar__1" class="btn__secundario">
-                        </div>
-                    </form>
-                </div>
+                <form method="dialog" class="formularioAbono">
+                    <label class="formulario__label">¿Cuánto quieres abonar?
+                    </label>
+                    <input class="gasto" type="number" min="2000" id="valorAbono" class="valorAbono"
+                        placeholder="Monto mínimo: 2000 CLP" required>
+                    <div class="formulario__botones">
+                        <button type="button" id="btn__abonar" class="btn">Abonar</button>
+                        <input type="button" value="Cancelar" id="cancelar__1" class="btn__secundario">
+                    </div>
+                </form>
             </section>
 
-            <section id="retiro" class="billetera compra">
-                <div class="contenedortituloCompra">
-                    <h2 class="tituloCompra">Retirar Dinero</h2>
+            <section id="retiro" class="billetera billetera__2">
+                <div class="contenedortituloBilletera">
+                    <h2 class="tituloBilletera">Retirar Dinero</h2>
                 </div>
-                <div class="contenedorForm">
-                    <form method="dialog" class="formularioAbono">
-                        <label class="formulario__label">Ingresa la cantidad en CLP
-                        </label>
-                        <input class="gasto" type="number" min="2000" id="valorRetiro" class="valorAbono"
-                            placeholder="Monto mínimo: 2000 CLP" required>
-                        <div class="formulario__botones">
-                            <button type="button" id="btn__retirar" class="btn">Retirar</button>
-                            <input type="button" value="Cancelar" id="cancelar__2" class="btn__secundario">
-                        </div>
-                    </form>
-                </div>
+                <form method="dialog" class="formularioAbono">
+                    <label class="formulario__label">¿Cuánto quieres retirar?
+                    </label>
+                    <input class="gasto" type="number" min="2000" id="valorRetiro" class="valorAbono"
+                        placeholder="Monto mínimo: 2000 CLP" required>
+                    <div class="formulario__botones">
+                        <button type="button" id="btn__retirar" class="btn">Retirar</button>
+                        <input type="button" value="Cancelar" id="cancelar__2" class="btn__secundario">
+                    </div>
+                </form>
             </section>
 
             <section id="compra" class="billetera compra">
-                <div class="contenedortituloCompra">
-                    <h2 class="tituloCompra">Comprar Criptos</h2>
+                <div class="contenedortituloBilletera">
+                    <h2 class="tituloBilletera">Comprar Criptos</h2>
                 </div>
                 <div class="sectionContainer">
                     <div class="btn__container">
@@ -177,7 +177,7 @@
                             <button type="button" id="compraVenta__2" class="btnCompraVenta">VENDER</button>
                         </div>
                     </div>
-                    <div id="contenedorForm__compra" class="contenedorForm">
+                    <div id="contenedorForm__compra" class="contenedorForm  billetera billetera__2 billetera__3">
                         <form method="dialog" class="formularioCompra">
                             <label for="listaCompra" class="labelCompra">¿Qué cripto quieres comprar? </label>
                             <select name="cripto" id="listaCompra" class="listaCripto">
@@ -196,7 +196,8 @@
                             </div>
                         </form>
                     </div>
-                    <div id="contenedorForm__venta" class="contenedorForm contenedorForm__disabled">
+                    <div id="contenedorForm__venta"
+                        class="contenedorForm contenedorForm__disabled billetera billetera__2 billetera__3">
                         <form method="dialog" class="formularioCompra">
                             <label for="listaVenta" class="labelCompra">¿Qué cripto quieres vender? </label>
                             <select name="cripto" id="listaCripto" class="listaCripto">
@@ -207,7 +208,8 @@
                                 <option id="optionVenta__Bch" value="Bch">Bitcoin Cash (BCH)</option>
                             </select>
                             <label for="gasto" class="labelCompra">¿Cuánto quieres vender? </label>
-                            <input id="valorVenta" class="gasto" type="number" step="0.00000001"  required placeholder="Ingresa la cantidad en cripto">
+                            <input id="valorVenta" class="gasto" type="number" step="0.00000001" required
+                                placeholder="Ingresa la cantidad en cripto">
 
                             <div class="formulario__botones">
                                 <button type="button" id="btn__confirmarVenta" class="btn">Confirmar</button>
@@ -218,14 +220,12 @@
                 </div>
             </section>
 
-
-
-            <section id="historial" class="billetera compra">
+            <section id="historial" class="billetera billetera__4">
                 <div class="contenedortituloBilletera">
                     <h2 class="tituloBilletera">Historial</h2>
                 </div>
-                <div class="contenedorMonedas">
-                    <table id="tableHistorial" class="tableSaldos">
+                <div class="historialContainer">
+                    <table id="tableHistorial" class="tableHistorial">
                         <thead>
                             <tr>
                                 <th scope="col" id="historial__moneda">ID</th>
@@ -236,23 +236,33 @@
                                 <th scope="col" id="historial__botones" class="contenedorBtn"></th>
                             </tr>
                         </thead>
-                        <tbody id="contenedorHistorial">
-
-                        </tbody>
+                            <tbody id="contenedorHistorial">
+                            </tbody>
                         <tfoot>
-
                         </tfoot>
                     </table>
-                    <div>
-                        <input type="button" value="Volver al Inicio" id="cancelar__5"
-                            class="btn__secundario btn__historial">
-                    </div>
+                </div>
+                <div class="historialBtn">
+                    <input type="button" value="Volver al Inicio" id="cancelar__5"
+                        class="btn__secundario btn__historial">
                 </div>
             </section>
         </main>
     </div>
+    <div class="contenedorRepo">
+        <div class="triangulo">
+            <div class="shape"></div>
+            <h4><a href="https://github.com/beykerestrada/Simulador-ExchangeCripto">Ver Repositorio<i class="uil uil-github"></i></a></h4>
+        </div>
+    </div>
     <footer class="footer">
-        <h4>Hecho con ❤️ por Beyker Estrada</h4>
+        <h4>Desarrollado por Beyker Estrada</h4>
+        <div class="redesSociales">
+            <a href="https://www.linkedin.com/in/beykerestrada/"><i class="uil uil-linkedin"></i></a>
+            <div class="separador"></div>
+            <a href="https://github.com/beykerestrada"><i class="uil uil-github"></i></a>
+        </div>
+
     </footer>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/wallet.js"></script>

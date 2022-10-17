@@ -43,5 +43,13 @@ transacciones.forEach(item => {
     `;
     contenedorHistorial.append(itemHistorial);
 })
-
-
+//Colorear el tipo de operacion ingreso o egreso
+function colorearTransaction() {
+    let tipoOperacion = document.getElementsByTagNameNS("td");
+    if(tipoOperacion.innerText === "Abono" || tipoOperacion.innerText === "Compra"){
+        tipoOperacion.classList.add("ingreso")
+    }else if (tipoOperacion.innerText === "Retiro" || tipoOperacion.innerText === "Venta"){
+        tipoOperacion.classList.add("egreso")
+    }
+}
+colorearTransaction();
