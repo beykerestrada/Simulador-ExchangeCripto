@@ -37,12 +37,15 @@ Igual que en abonar, hay una cantidad mínima que se puede retirar. De igual man
 ### Comprar/Vender
 
 Tiene un formulario de compra y uno de venta los cuales tienen una lista con las opciones de criptomonedas que hay disponibles y se muestra el saldo disponible de la moneda que se desee intercambiar para que el usuario tenga una idea del monto que puede ingresar. Se valida que se ingrese una cantidad valida y que esta sea mayor que el monto mínimo permitido y menor que el saldo disponible
+
 <img width="835" alt="Captura de Pantalla 2022-10-17 a la(s) 17 09 03" src="https://user-images.githubusercontent.com/96588336/196273225-658aa02a-faec-4290-a1e5-465ba04aae39.png">
+
 <img width="801" alt="Captura de Pantalla 2022-10-17 a la(s) 17 09 20" src="https://user-images.githubusercontent.com/96588336/196273276-72324815-1412-48ce-8f39-405f98842c5a.png">
 
 ### Historial
 
 En esta sección se muestra el registro de todas las operaciones (Abono, Retiro, Compra, Venta) que realiza el usuario. Se hace uso de localStorage para almacenar esta información
+
 <img width="870" alt="Captura de Pantalla 2022-10-17 a la(s) 17 11 28" src="https://user-images.githubusercontent.com/96588336/196273695-096f6ca1-eb84-4c9e-b323-ac44d5ce5099.png">
 
 ### Actualización de precios
@@ -59,6 +62,7 @@ Tambien se colorea la varation de verde si es un valor positivo y de rojo si es 
 ### Librería
 
 Se utiliza SweetAlert para mostrar los mensajes de éxito o error según las acciones que realice el usuario en la plataforma
+
 <img width="497" alt="Captura de Pantalla 2022-10-17 a la(s) 17 19 18" src="https://user-images.githubusercontent.com/96588336/196275147-3d6fc99e-8235-4b4c-9115-a03ff6bd8af8.png">
 
 ![Captura de Pantalla 2022-10-17 a la(s) 17 20 19](https://user-images.githubusercontent.com/96588336/196280336-a5c38473-f727-4fa7-8c02-43a21b238baf.png)
