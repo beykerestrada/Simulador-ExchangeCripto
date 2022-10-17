@@ -1,4 +1,3 @@
-
 const contenedorHistorial = document.getElementById("contenedorHistorial");
 
 // Uso del operador || para verificar si hay algo guardado en localStorage
@@ -28,8 +27,6 @@ function addCryptoTransaction(id, operacion, monedaOperada, cantidad, precio){
     localStorage.setItem("transactionHistory", JSON.stringify(transactionHistory));
 }
 
-
-
 //Dibuja el historial en el DOM
 let transacciones = JSON.parse(localStorage.getItem("transactionHistory")) || [];
 transacciones.forEach(item => {
@@ -43,13 +40,4 @@ transacciones.forEach(item => {
     `;
     contenedorHistorial.append(itemHistorial);
 })
-//Colorear el tipo de operacion ingreso o egreso
-function colorearTransaction() {
-    let tipoOperacion = document.getElementsByTagNameNS("td");
-    if(tipoOperacion.innerText === "Abono" || tipoOperacion.innerText === "Compra"){
-        tipoOperacion.classList.add("ingreso")
-    }else if (tipoOperacion.innerText === "Retiro" || tipoOperacion.innerText === "Venta"){
-        tipoOperacion.classList.add("egreso")
-    }
-}
-colorearTransaction();
+

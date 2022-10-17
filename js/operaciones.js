@@ -1,20 +1,20 @@
-
 const modalContainer = document.getElementById("modalContainer");
 const saldoAbonado = document.getElementById("btn__abonar");
 const saldoRetirado = document.getElementById("btn__retirar")
 let estandarPesosChilenos = Intl.NumberFormat('es-CL');
 const actualizarSaldoClp = document.getElementById("actualizarSaldoClp");
-const actualizarSaldoBtc = document.getElementById("actualizarSaldoBtc");
-const actualizarSaldoEth = document.getElementById("actualizarSaldoEth");
-const actualizarSaldoUsdc = document.getElementById("actualizarSaldoUsdc");
-const actualizarSaldoLtc = document.getElementById("actualizarSaldoLtc");
-const actualizarSaldoBch = document.getElementById("actualizarSaldoBch");
-const saldos = [];
+let saldoActual = JSON.parse(localStorage.getItem("saldoActual"));
+const saldoBtc = JSON.parse(localStorage.getItem("saldoBtc"));
+const saldoEth = JSON.parse(localStorage.getItem("saldoEth"));
+const saldoUsdc = JSON.parse(localStorage.getItem("saldoUsdc"));
+const saldoLtc = JSON.parse(localStorage.getItem("saldoLtc"));
+const saldoBch = JSON.parse(localStorage.getItem("saldoBch"));
 
-
+const saldos = [
+    {}
+]
 // Declaracion de funcion que muestra mensaje de éxito al completar una operacion
 // Además recarga la página para que la operacion quede reflejada en el historial y devuelve a inicio
-
 function operacionExitosa() {
     const Toast = Swal.mixin({
         toast: true,
@@ -27,7 +27,6 @@ function operacionExitosa() {
             toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
     })
-
     Toast.fire({
         icon: 'success',
         title: 'Operación exitosa'
@@ -37,8 +36,9 @@ function operacionExitosa() {
         })
     })
 }
-let saldoBilletera;
+
 // Declaracion de funcion que actualiza el saldo en la seccion billetera 
+let saldoBilletera;
 function actualizarSaldo() {
     saldoBilletera = JSON.parse(localStorage.getItem("saldoActual"))
     if (!saldoBilletera) {
@@ -47,14 +47,12 @@ function actualizarSaldo() {
     else {
         actualizarSaldoClp.innerHTML = `$ ${estandarPesosChilenos.format(saldoBilletera)}`;
     }
-
 }
 actualizarSaldo();
 
 //COMIENZO FLUJO DE ABONO DE SALDO
 //declaracion de variables
 let saldoClp;
-let saldoActual;
 let monedaAbonada;
 let newTransaction;
 let id = 0;
@@ -87,7 +85,7 @@ function abonarSaldo() {
         operacionExitosa();
     }
 }
-// invocacion de función al presionar la Enter
+// invocacion de función al presionar la tecla Enter
 let inputAbono = document.getElementById("valorAbono");
 inputAbono.addEventListener("keyup", function (event) {
     if (event.key === "Enter") {
@@ -103,16 +101,14 @@ saldoAbonado.onclick = () => {
 
 //Invocacion de funcion desde el boton Abonar en la seccion Billetera
 let btnAbonar = document.getElementById("btnAbonar");
-
 btnAbonar.onclick = () => {
     irAbonarDesdeWallet();
 }
 // FIN FLUJO DE ABONO DE SALDO
 
 //COMIENZO FLUJO DE RETIRO
-let retiroClp;
-
 // Declaracion de funcion
+let retiroClp;
 function retirarSaldo() {
     saldoActual = JSON.parse(localStorage.getItem("saldoActual"));
     monedaOperada = "CLP";
@@ -130,7 +126,6 @@ function retirarSaldo() {
             title: 'Oops...',
             text: 'El mínimo a retirar es de $2000',
         })
-
     } else if (retiroClp > saldoActual) {
         Swal.fire({
             icon: 'error',
@@ -138,10 +133,8 @@ function retirarSaldo() {
             text: `Saldo insuficiente, ingresa un monto menor a $${estandarPesosChilenos.format(saldoActual) + 1}`,
         })
     }
-
     else {
         saldoActual = saldoActual - retiroClp;
-
         //Aqui hago uso del localStorage para actualizar el saldo
         localStorage.setItem("saldoActual", JSON.stringify(saldoActual));
         actualizarSaldo();
@@ -164,14 +157,12 @@ saldoRetirado.onclick = () => {
 
 //Invocacion de funcion desde el boton Abonar en la seccion Billetera
 let btnRetirar = document.getElementById("btnRetirar");
-
 btnRetirar.onclick = () => {
     irRetirarDesdeWallet();
 }
 //FIN FLUJO DE RETIRO
 
 //Cuando se presiona el boton cancelar desde cualquier flujo, vuelve al inicio
-
 function operacionCancelada() {
     const Toast = Swal.mixin({
         toast: true,
@@ -184,7 +175,6 @@ function operacionCancelada() {
             toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
     })
-
     Toast.fire({
         icon: 'error',
         title: 'Operación cancelada'
@@ -212,69 +202,61 @@ for (let i = 0; i < 6; i++) {
     }
 };
 
-
-
-
-
 //COMIENZO DEL FLUJO DE COMPRA
+//Funciones que actualizan el saldo en cripto despues de una compra o venta
 
-//Funciones que activan la compra de alguna cripto, según la opción de la lista que se elija
-let saldoBilleteraBtc;
+const actualizarSaldoBtc = document.getElementById("actualizarSaldoBtc");
+const actualizarSaldoEth = document.getElementById("actualizarSaldoEth");
+const actualizarSaldoUsdc = document.getElementById("actualizarSaldoUsdc");
+const actualizarSaldoLtc = document.getElementById("actualizarSaldoLtc");
+const actualizarSaldoBch = document.getElementById("actualizarSaldoBch");
+
 function updateSaldoBtc() {
-    saldoBilleteraBtc = JSON.parse(localStorage.getItem("saldoBtc"));
-
+    let saldoBilleteraBtc = JSON.parse(localStorage.getItem("saldoBtc"));
     if (!saldoBilleteraBtc) {
         actualizarSaldoBtc.innerHTML = `$ 0`;
     } else {
         actualizarSaldoBtc.innerHTML = "";
-        actualizarSaldoBtc.innerHTML = `&#8383; ${saldoBilleteraBtc}`;
+        actualizarSaldoBtc.innerHTML = `$ ${saldoBilleteraBtc}`;
     }
 }
-updateSaldoBtc();
-
-let saldoBilleteraEth;
-function updateSaldoEth() {
-    saldoBilleteraEth = JSON.parse(localStorage.getItem("saldoEth"));
-
+updateSaldoBtc()
+function updateSaldoEth(){
+    let saldoBilleteraEth = JSON.parse(localStorage.getItem("saldoEth"));
     if (!saldoBilleteraEth) {
         actualizarSaldoEth.innerHTML = `$ 0`;
     } else {
+        actualizarSaldoEth.innerHTML = "";
         actualizarSaldoEth.innerHTML = `$ ${saldoBilleteraEth}`;
     }
 }
 updateSaldoEth();
-
-let saldoBilleteraUsdc;
-function updateSaldoUsdc() {
-    saldoBilleteraUsdc = JSON.parse(localStorage.getItem("saldoUsdc"));
-
+function updateSaldoUsdc(){
+    let saldoBilleteraUsdc = JSON.parse(localStorage.getItem("saldoUsdc"));
     if (!saldoBilleteraUsdc) {
-        actualizarSaldoUsdc.innerHTML = `$ 0`;
+        actualizarSaldoUsdc.innerText = `$ 0`;
     } else {
-        actualizarSaldoUsdc.innerHTML = `$ ${estandarPesosChilenos.format(saldoBilleteraUsdc)}`;
+        actualizarSaldoUsdc.innerText = "";
+        actualizarSaldoUsdc.innerText = `$ ${saldoBilleteraUsdc}`;
     }
 }
 updateSaldoUsdc();
-
-let saldoBilleteraLtc;
-function updateSaldoLtc() {
-    saldoBilleteraLtc = JSON.parse(localStorage.getItem("saldoLtc"));
-
+function updateSaldoLtc(){
+    let saldoBilleteraLtc = JSON.parse(localStorage.getItem("saldoLtc"));
     if (!saldoBilleteraLtc) {
         actualizarSaldoLtc.innerHTML = `$ 0`;
     } else {
+        actualizarSaldoLtc.innerHTML = "";
         actualizarSaldoLtc.innerHTML = `$ ${saldoBilleteraLtc}`;
     }
 }
 updateSaldoLtc();
-
-let saldoBilleteraBch;
-function updateSaldoBch() {
-    saldoBilleteraBch = JSON.parse(localStorage.getItem("saldoBch"));
-
+function updateSaldoBch(){
+    let saldoBilleteraBch = JSON.parse(localStorage.getItem("saldoBch"));
     if (!saldoBilleteraBch) {
         actualizarSaldoBch.innerHTML = `$ 0`;
     } else {
+        actualizarSaldoBch.innerHTML = "";
         actualizarSaldoBch.innerHTML = `$ ${saldoBilleteraBch}`;
     }
 }
@@ -283,11 +265,9 @@ updateSaldoBch();
 function comprarBtc() {
     monedaOperada = "BTC";
     let cantidadRecibida = valorCompra / valorBtc;
-
     let saldoBtc = JSON.parse(localStorage.getItem("saldoBtc"));
     saldoBtc = parseFloat(saldoBtc + cantidadRecibida);
     saldoBtc = parseFloat(saldoBtc.toFixed(8));
-
     saldoActual = JSON.parse(localStorage.getItem("saldoActual"));
     saldoActual = saldoActual - valorCompra;
 
@@ -304,12 +284,9 @@ function comprarBtc() {
 function comprarEth() {
     monedaOperada = "ETH";
     let cantidadRecibida = valorCompra / valorEth;
-    console.log(cantidadRecibida);
-
     let saldoEth = JSON.parse(localStorage.getItem("saldoEth"));
     saldoEth = parseFloat(saldoEth + cantidadRecibida);
     saldoEth = parseFloat(saldoEth.toFixed(8));
-
     saldoActual = JSON.parse(localStorage.getItem("saldoActual"));
     saldoActual = saldoActual - valorCompra;
 
@@ -326,12 +303,9 @@ function comprarEth() {
 function comprarUsdc() {
     monedaOperada = "USDC";
     let cantidadRecibida = valorCompra / valorUsdc;
-    console.log(cantidadRecibida);
-
     let saldoUsdc = JSON.parse(localStorage.getItem("saldoUsdc"));
     saldoUsdc = parseFloat(saldoUsdc + cantidadRecibida);
     saldoUsdc = parseFloat(saldoUsdc.toFixed(2));
-
     saldoActual = JSON.parse(localStorage.getItem("saldoActual"));
     saldoActual = saldoActual - valorCompra;
 
@@ -348,12 +322,9 @@ function comprarUsdc() {
 function comprarLtc() {
     monedaOperada = "LTC";
     let cantidadRecibida = valorCompra / valorLtc;
-    console.log(cantidadRecibida);
-
     let saldoLtc = JSON.parse(localStorage.getItem("saldoLtc"));
     saldoLtc = parseFloat(saldoLtc + cantidadRecibida);
     saldoLtc = parseFloat(saldoLtc.toFixed(8));
-
     saldoActual = JSON.parse(localStorage.getItem("saldoActual"));
     saldoActual = saldoActual - valorCompra;
 
@@ -362,7 +333,7 @@ function comprarLtc() {
     localStorage.setItem("saldoActual", JSON.stringify(saldoActual));
 
     actualizarSaldo();
-    updateSaldoUsdc();
+    updateSaldoLtc();
     addCryptoTransaction(transactionHistory.length + 1, operacion, monedaOperada, cantidadRecibida, `$ ${estandarPesosChilenos.format(valorLtc)}`);
     operacionExitosa();
 }
@@ -370,12 +341,9 @@ function comprarLtc() {
 function comprarBch() {
     monedaOperada = "BCH";
     let cantidadRecibida = valorCompra / valorBch;
-    console.log(cantidadRecibida);
-
     let saldoBch = JSON.parse(localStorage.getItem("saldoBch"));
     saldoBch = parseFloat(saldoBch + cantidadRecibida);
     saldoBch = parseFloat(saldoBch.toFixed(8));
-
     saldoActual = JSON.parse(localStorage.getItem("saldoActual"));
     saldoActual = saldoActual - valorCompra;
 
@@ -384,12 +352,13 @@ function comprarBch() {
     localStorage.setItem("saldoActual", JSON.stringify(saldoActual));
 
     actualizarSaldo();
-    updateSaldoUsdc();
+    updateSaldoBch();
     addCryptoTransaction(transactionHistory.length + 1, operacion, monedaOperada, cantidadRecibida, `$ ${estandarPesosChilenos.format(valorBch)}`);
     operacionExitosa();
 }
 
-//Funcion que identifica la opción seleccionada 
+/* Funcion que identifica cuando se hace clic en boton "Comprar" dentro de la fila de la moneda deseada 
+para que quede seleccionada por defecto en el formulario de compra */
 let moneda;
 let listaCompra = document.getElementById("listaCompra");
 listaCompra.addEventListener("change", (event) => {
@@ -398,8 +367,6 @@ listaCompra.addEventListener("change", (event) => {
 
 function obtenerMonedaSeleccionada() {
     let monedaSeleccionada = document.getElementById("listaCompra").value;
-    console.log(monedaSeleccionada);
-
     if (monedaSeleccionada === "Btc") {
         moneda = 1;
     } else if (monedaSeleccionada === "Eth") {
@@ -412,6 +379,8 @@ function obtenerMonedaSeleccionada() {
         moneda = 5;
     }
 }
+
+//Invocación de la funcion comprarMoneda desde el formulario de compra
 let btnComprar = document.getElementById("btn__confirmarCompra");
 btnComprar.onclick = () => {
     comprarMoneda();
@@ -437,13 +406,12 @@ function comprarMoneda() {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: `Saldo insuficiente, ingresa un monto menor a $${estandarPesosChilenos.format(saldoBilletera + 1)}`,
+            text: `Saldo insuficiente, ingresa un monto menor a $${estandarPesosChilenos.format(saldoBilletera + 1)} o abona saldo a tu billetera para poder comprar esta cantidad`,
         })
     } else {
         obtenerMonedaSeleccionada();
-
         if (moneda === 1) {
-            comprarBtc();
+            comprarBtc()
         } else if (moneda === 2) {
             comprarEth();
         } else if (moneda === 3) {
@@ -455,30 +423,21 @@ function comprarMoneda() {
         }
     }
 }
-
+//Invocacion de funcion comprarMoneda al presionar Enter
 let inputCompra = document.getElementById("valorCompra");
 inputCompra.addEventListener("keyup", function (event) {
     if (event.key === "Enter") {
         comprarMoneda();
     }
 });
-
 //FIN FLUJO DE COMPRA
 
 //COMIENZO FLUJO DE VENTA
-
-
-
 function venderBtc() {
     monedaOperada = "BTC";
     let saldoBtc = JSON.parse(localStorage.getItem("saldoBtc"));
-    console.log(saldoBtc);
     let valorVenta = parseFloat(document.getElementById("valorVenta").value);
-    console.log(valorVenta);
-
     let cantidadRecibida = valorVenta * valorBtc;
-    console.log(cantidadRecibida);
-
 
     if (!valorVenta) {
         Swal.fire({
@@ -492,7 +451,7 @@ function venderBtc() {
             title: 'Oops...',
             text: 'El mínimo que puedes vender es BTC 0.00005',
         })
-    } else if (valorVenta > saldoBtc || valorVenta > saldoBilleteraBtc) {
+    } else if (valorVenta > saldoBtc) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -501,7 +460,6 @@ function venderBtc() {
     } else {
         saldoBtc = parseFloat(saldoBtc - valorVenta);
         saldoBtc = parseFloat(saldoBtc.toFixed(8));
-
         saldoActual = JSON.parse(localStorage.getItem("saldoActual"));
         saldoActual = saldoActual + cantidadRecibida;
 
@@ -519,13 +477,8 @@ function venderBtc() {
 function venderEth() {
     monedaOperada = "ETH";
     let saldoEth = JSON.parse(localStorage.getItem("saldoEth"));
-    console.log(saldoEth);
     let valorVenta = parseFloat(document.getElementById("valorVenta").value);
-    console.log(valorVenta);
-
     let cantidadRecibida = valorVenta * valorEth;
-    console.log(cantidadRecibida);
-
 
     if (!valorVenta) {
         Swal.fire({
@@ -539,7 +492,7 @@ function venderEth() {
             title: 'Oops...',
             text: 'El mínimo que puedes vender es ETH 0.00005',
         })
-    } else if (valorVenta > saldoEth || valorVenta > saldoBilleteraEth) {
+    } else if (valorVenta > saldoEth) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -548,7 +501,6 @@ function venderEth() {
     } else {
         saldoEth = parseFloat(saldoEth - valorVenta);
         saldoEth = parseFloat(saldoEth.toFixed(8));
-
         saldoActual = JSON.parse(localStorage.getItem("saldoActual"));
         saldoActual = saldoActual + cantidadRecibida;
 
@@ -566,13 +518,8 @@ function venderEth() {
 function venderUsdc() {
     monedaOperada = "USDC";
     let saldoUsdc = JSON.parse(localStorage.getItem("saldoUsdc"));
-    console.log(saldoUsdc);
     let valorVenta = parseFloat(document.getElementById("valorVenta").value);
-    console.log(valorVenta);
-
     let cantidadRecibida = valorVenta * valorUsdc;
-    console.log(cantidadRecibida);
-
 
     if (!valorVenta) {
         Swal.fire({
@@ -586,7 +533,7 @@ function venderUsdc() {
             title: 'Oops...',
             text: 'El mínimo que puedes vender es USDC 10',
         })
-    } else if (valorVenta > saldoUsdc || valorVenta > saldoBilleteraUsdc) {
+    } else if (valorVenta > saldoUsdc) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -595,7 +542,6 @@ function venderUsdc() {
     } else {
         saldoUsdc = parseFloat(saldoUsdc - valorVenta);
         saldoUsdc = parseFloat(saldoUsdc.toFixed(8));
-
         saldoActual = JSON.parse(localStorage.getItem("saldoActual"));
         saldoActual = saldoActual + cantidadRecibida;
 
@@ -613,13 +559,8 @@ function venderUsdc() {
 function venderLtc() {
     monedaOperada = "LTC";
     let saldoLtc = JSON.parse(localStorage.getItem("saldoLtc"));
-    console.log(saldoLtc);
     let valorVenta = parseFloat(document.getElementById("valorVenta").value);
-    console.log(valorVenta);
-
     let cantidadRecibida = valorVenta * valorLtc;
-    console.log(cantidadRecibida);
-
 
     if (!valorVenta) {
         Swal.fire({
@@ -633,7 +574,7 @@ function venderLtc() {
             title: 'Oops...',
             text: 'El mínimo que puedes vender es LTC 0.00005',
         })
-    } else if (valorVenta > saldoLtc || valorVenta > saldoBilleteraLtc) {
+    } else if (valorVenta > saldoLtc) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -642,7 +583,6 @@ function venderLtc() {
     } else {
         saldoLtc = parseFloat(saldoLtc - valorVenta);
         saldoLtc = parseFloat(saldoLtc.toFixed(8));
-
         saldoActual = JSON.parse(localStorage.getItem("saldoActual"));
         saldoActual = saldoActual + cantidadRecibida;
 
@@ -660,13 +600,8 @@ function venderLtc() {
 function venderBch() {
     monedaOperada = "BCH";
     let saldoBch = JSON.parse(localStorage.getItem("saldoBch"));
-    console.log(saldoBch);
     let valorVenta = parseFloat(document.getElementById("valorVenta").value);
-    console.log(valorVenta);
-
     let cantidadRecibida = valorVenta * valorBch;
-    console.log(cantidadRecibida);
-
 
     if (!valorVenta) {
         Swal.fire({
@@ -680,7 +615,7 @@ function venderBch() {
             title: 'Oops...',
             text: 'El mínimo que puedes vender es LTC 0.00005',
         })
-    } else if (valorVenta > saldoBch || valorVenta > saldoBilleteraBch) {
+    } else if (valorVenta > saldoBch) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -689,7 +624,6 @@ function venderBch() {
     } else {
         saldoBch = parseFloat(saldoBch - valorVenta);
         saldoBch = parseFloat(saldoBch.toFixed(8));
-
         saldoActual = JSON.parse(localStorage.getItem("saldoActual"));
         saldoActual = saldoActual + cantidadRecibida;
 
@@ -704,11 +638,10 @@ function venderBch() {
     }
 }
 
-
+/* Funcion que identifica cuando se hace clic en boton "Vender" dentro de la fila de la moneda deseada 
+para que quede seleccionada por defecto en el formulario de venta */
 function obtenerCryptoSeleccionada() {
     let monedaSeleccionada = document.getElementById("listaCripto").value;
-    console.log(monedaSeleccionada);
-
     if (monedaSeleccionada === "Btc") {
         moneda = 1;
     } else if (monedaSeleccionada === "Eth") {
@@ -722,10 +655,10 @@ function obtenerCryptoSeleccionada() {
     }
 }
 
+//Función que dispara las ventas segun la opción identificada
 function venderMoneda() {
     operacion = "Venta";
     obtenerCryptoSeleccionada();
-
     if (moneda === 1) {
         venderBtc();
     } else if (moneda === 2) {
@@ -739,35 +672,29 @@ function venderMoneda() {
     }
 }
 
-
+////Invocación de la funcion venderMoneda desde al presionar Enter
 let inputVenta = document.getElementById("valorVenta");
 inputVenta.addEventListener("keyup", function (event) {
     if (event.key === "Enter") {
         venderMoneda();
     }
 });
-
+//Invocación de la funcion venderMoneda desde el formulario de venta
 let btnVender = document.getElementById("btn__confirmarVenta");
 btnVender.onclick = () => {
     venderMoneda();
 }
-
-
-
 //FIN FLUJO DE VENTA
 
 //Invocación de funciones desde los botones de la wallet
-
-let opcionCompraBtc = document.getElementById("optionCompra__Btc");
-let opcionCompraEth = document.getElementById("optionCompra__Eth");
-let opcionCompraUsdc = document.getElementById("optionCompra__Usdc");
-let opcionCompraLtc = document.getElementById("optionCompra__Ltc");
-let opcionCompraBch = document.getElementById("optionCompra__Bch");
-
+let opcionCompraBtc = document.getElementById("optionCompra__1");
+let opcionCompraEth = document.getElementById("optionCompra__2");
+let opcionCompraUsdc = document.getElementById("optionCompra__3");
+let opcionCompraLtc = document.getElementById("optionCompra__4");
+let opcionCompraBch = document.getElementById("optionCompra__5");
 let botonAccionadoCompra;
 
 function irCompraDesdeWallet(option) {
-
     botonAccionadoCompra.addEventListener("click", () => {
         compra.style.display = "flex";
         billetera.style.display = "none";
@@ -776,14 +703,10 @@ function irCompraDesdeWallet(option) {
         historial.style.display = "none";
         option.setAttribute("selected", "true")
     });
-
 }
-
-
 
 for (let i = 0; i < 6; i++) {
     botonAccionadoCompra = document.getElementById(`btnComprar__${i}`);
-
     switch (i) {
         case 1:
             irCompraDesdeWallet(opcionCompraBtc);
@@ -805,23 +728,22 @@ for (let i = 0; i < 6; i++) {
     }
 };
 
-let opcionVentaBtc = document.getElementById("optionVenta__Btc");
-let opcionVentaEth = document.getElementById("optionVenta__Eth");
-let opcionVentaUsdc = document.getElementById("optionVenta__Usdc");
-let opcionVentaLtc = document.getElementById("optionVenta__Ltc");
-let opcionVentaBch = document.getElementById("optionVenta__Bch");
-
+//Invocación de funciones desde los botones de la wallet
+let opcionVentaBtc = document.getElementById("optionVenta__1");
+let opcionVentaEth = document.getElementById("optionVenta__2");
+let opcionVentaUsdc = document.getElementById("optionVenta__3");
+let opcionVentaLtc = document.getElementById("optionVenta__4");
+let opcionVentaBch = document.getElementById("optionVenta__5");
 let botonAccionadoVenta;
 
-function irVentaDesdeWallet(option) {
 
-    botonAccionadoCompra.addEventListener("click", () => {
+function irVentaDesdeWallet(option) {
+    botonAccionadoVenta.addEventListener("click", () => {
         compra.style.display = "flex";
         billetera.style.display = "none";
         abono.style.display = "none";
         retiro.style.display = "none";
         historial.style.display = "none";
-
         contenedorFormVenta.style.display = "flex";
         contenedorFormCompra.style.display = "none";
         windowVenta.classList.remove("btnDisabled")
@@ -832,16 +754,96 @@ function irVentaDesdeWallet(option) {
         windowCompra.style.border = "none";
         btnWindowVenta.style.color = "#c3451b"
         btnWindowCompra.style.color = "#000";
-
         option.setAttribute("selected", "true");
     });
-
 }
 
 
-for (let i = 0; i < 6; i++) {
-    botonAccionadoCompra = document.getElementById(`btnVender__${i}`);
+//Muestra en un span, el saldo disponible cuando se quiere vender una cripto
+const criptomonedas = document.getElementById("listaCripto");
+function mostrarSaldoCriptoSpan({ i, saldo, sigla }) {
+    let btn = document.getElementById(`btnVender__${i}`);
+    btn.addEventListener("click", () => {
+        let div = document.getElementById("disponibleCripto");
+        div.innerHTML = "";
+        let span = document.createElement("span");
+        span.innerText = `Disponible: ${saldo} ${sigla}`;
+        div.append(span);
+    });
+}
+mostrarSaldoCriptoSpan({ i: 1, saldo: saldoBtc, sigla: "BTC" });
+mostrarSaldoCriptoSpan({ i: 2, saldo: saldoEth, sigla: "ETH" });
+mostrarSaldoCriptoSpan({ i: 3, saldo: saldoUsdc, sigla: "USDC" });
+mostrarSaldoCriptoSpan({ i: 4, saldo: saldoLtc, sigla: "LTC" });
+mostrarSaldoCriptoSpan({ i: 5, saldo: saldoBch, sigla: "BCH" });
 
+//Dibuja span de saldo disponible cuando se cambia a cualquier option del select
+function dibujarSaldoSpan(saldo, sigla) {
+    let div = document.getElementById("disponibleCripto");
+    div.innerHTML = "";
+    let span = document.createElement("span");
+    span.innerText = `Disponible: ${saldo} ${sigla}`;
+    div.append(span);
+}
+
+
+
+//Muestra en un span, el saldo disponible en CLP cuando se quiere hacer un retiro
+function mostrarSaldoFiatSpan() {
+    let btn = document.getElementById("navegacionBtn__3");
+    let btn2 = document.getElementById("btnRetirar");
+    let btn3 = document.getElementById("compraVenta__1");
+    let btn4 = document.getElementById("navegacionBtn__4")
+    btn.addEventListener("click", () => {
+        let div = document.getElementById("disponibleClp__1");
+        div.innerHTML = "";
+        let span = document.createElement("span");
+        span.innerText = `Disponible: $${estandarPesosChilenos.format(saldoActual)}`;
+        div.append(span);
+    });
+    btn2.addEventListener("click", () => {
+        let div = document.getElementById("disponibleClp__1");
+        div.innerHTML = "";
+        let span = document.createElement("span");
+        span.innerText = `Disponible: $${estandarPesosChilenos.format(saldoActual)}`;
+        div.append(span);
+    });
+    btn3.addEventListener("click", () => {
+        let div = document.getElementById("disponibleClp__2");
+        div.innerHTML = "";
+        let span = document.createElement("span");
+        span.innerText = `Disponible: $${estandarPesosChilenos.format(saldoActual)}`;
+        div.append(span);
+    });
+    btn4.addEventListener("click", () => {
+        let div = document.getElementById("disponibleClp__2");
+        div.innerHTML = "";
+        let span = document.createElement("span");
+        span.innerText = `Disponible: $${estandarPesosChilenos.format(saldoActual)}`;
+        div.append(span);
+    });
+}
+mostrarSaldoFiatSpan();
+
+//Muestra en un span, el saldo disponible en CLP cuando se quiere comprar una cripto
+function mostrarSaldoFiatFromComprar(i) {
+    let btn = document.getElementById(`btnComprar__${i}`);
+    btn.addEventListener("click", () => {
+        let div = document.getElementById("disponibleClp__2");
+        div.innerHTML = "";
+        let span = document.createElement("span");
+        span.innerText = `Disponible: $${estandarPesosChilenos.format(saldoActual)}`;
+        div.append(span);
+    });
+}
+mostrarSaldoFiatFromComprar(1);
+mostrarSaldoFiatFromComprar(2);
+mostrarSaldoFiatFromComprar(3);
+mostrarSaldoFiatFromComprar(4);
+mostrarSaldoFiatFromComprar(5);
+
+for (let i = 0; i < 6; i++) {
+    botonAccionadoVenta = document.getElementById(`btnVender__${i}`);
     switch (i) {
         case 1:
             irVentaDesdeWallet(opcionVentaBtc);
@@ -862,4 +864,20 @@ for (let i = 0; i < 6; i++) {
             break;
     }
 };
+
+const mostrarSaldoDisponible = () => {
+    const indice = criptomonedas.selectedIndex;
+    if (indice === 0) {
+        dibujarSaldoSpan(saldoBtc, "BTC");
+    } else if (indice === 1) {
+        dibujarSaldoSpan(saldoEth, "ETH");
+    } else if (indice === 2) {
+        dibujarSaldoSpan(saldoUsdc, "USDC");
+    } else if (indice === 3) {
+        dibujarSaldoSpan(saldoLtc, "LTC");
+    } else if (indice === 4) {
+        dibujarSaldoSpan(saldoBch, "BCH");
+    }
+};
+criptomonedas.addEventListener("change", mostrarSaldoDisponible);
 

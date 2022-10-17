@@ -1,5 +1,4 @@
 //Declaracion de variables para ser usada en la funcion updatePrice[crypto]
-
 let basePrecioBtc;
 let precioBtc;
 let variationBtc;
@@ -17,14 +16,14 @@ let precioBch;
 let variationBch;
 
 //Declaracion de variables para ser usada en la funcion updateVariation[...]
-
 let variation1;
 let variation2;
 let variation3;
 let variation4;
 let variation5;
 
-/* Funcion updateVariation[...] genera un número aleatorio entre -1 y 1 que luego es usado en la funcion updatePrice[...] para modificar el precio de las criptos
+/* Funcion updateVariation[...] genera un número aleatorio entre -1 y 1 que luego es usado en la funcion
+ updatePrice[...] para modificar el precio de las criptos
 Simula el movimiento del mercado, donde el precio de las criptos varía según las órdenes que se ejecutan.
 */
 
@@ -74,14 +73,14 @@ function updateVariationBch() {
 }
 updateVariationBch();
 
-
 refresh(updateVariationBtc);
 refresh(updateVariationEth);
 refresh(updateVariationUsdc);
 refresh(updateVariationLtc);
 refresh(updateVariationBch);
 
-/* Función updatePrice[...] extrae datos mediante fecth el archivo currencies.json luego hace operaciones matemáticas para actualizar el precio según la variación que la extrae de 
+/* Función updatePrice[...] extrae datos mediante fecth el archivo currencies.json 
+luego hace operaciones matemáticas para actualizar el precio según la variación que la extrae de 
 la función updateVariation[...]. Finalmente renderiza el resultado en el DOM
 */
 
@@ -104,7 +103,6 @@ function updatePriceBtc() {
             let variacion = document.getElementById("variationBtc");
             variacion.innerHTML = "";
             variacion.innerHTML = `24h: ${variationBtc}%`
-            
 
             //Colorea el texto de verde si la cripto subió de precio o de rojo si la cripto bajó de precio
             let priceVariation = document.getElementById("variationBtc");
@@ -113,7 +111,6 @@ function updatePriceBtc() {
             } else if (variationBtc >= 0) {
                 priceVariation.classList.add("priceVariation__positive");
             }
-
         }).catch(error => console.log(error));
 
 }
@@ -146,7 +143,6 @@ function updatePriceEth() {
             } else if (variationEth >= 0) {
                 priceVariation.classList.add("priceVariation__positive");
             }
-
         }).catch(error => console.log(error));
 }
 updatePriceEth();
@@ -178,7 +174,6 @@ function updatePriceUsdc() {
             } else if (variationUsdc >= 0) {
                 priceVariation.classList.add("priceVariation__positive");
             }
-
         }).catch(error => console.log(error));
 }
 updatePriceUsdc();
@@ -210,7 +205,6 @@ function updatePriceLtc() {
             } else if (variationLtc >= 0) {
                 priceVariation.classList.add("priceVariation__positive");
             }
-
         }).catch(error => console.log(error));
 }
 updatePriceLtc();
@@ -242,19 +236,16 @@ function updatePriceBch() {
             } else if (variationBch >= 0) {
                 priceVariation.classList.add("priceVariation__positive");
             }
-
         }).catch(error => console.log(error));
 }
 updatePriceBch();
 
 // Determina cada cuanto tiempo se debe actualizar el precio de las cripto, en este caso, cada 5 minutos
-
 refresh(updatePriceBtc);
 refresh(updatePriceEth);
 refresh(updatePriceUsdc);
 refresh(updatePriceLtc);
 refresh(updatePriceBch);
-
 
 let valorBtc;
 let valorEth;
@@ -269,7 +260,5 @@ function updateValor() {
     valorLtc = parseFloat(JSON.parse(localStorage.getItem("precioLtc")));
     valorBch = parseFloat(JSON.parse(localStorage.getItem("precioBch")));
 }
-
 updateValor();
-
 refresh(updateValor);

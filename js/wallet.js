@@ -10,7 +10,6 @@ nombreUsuario.classList.add("nombreUsuario")
 contenedorLogin.append(nombreUsuario);
 
 //Boton de logOut para retornar a la página de inicio, tambien limpia el sessionStorage
-
 const btnLogOut = document.getElementById("btnLogOut");
 btnLogOut.onclick = () => {
     sessionStorage.clear();
@@ -35,7 +34,6 @@ function irBilletera() {
         historial.style.display = "none";
     });
 }
-
 function irAbonar() {
     botonAccionado.addEventListener("click", () => {
         abono.style.display = "flex";
@@ -52,7 +50,6 @@ function irAbonarDesdeWallet() {
     retiro.style.display = "none";
     historial.style.display = "none";
 }
-
 function irComprar() {
     botonAccionado.addEventListener("click", () => {
         compra.style.display = "flex";
@@ -62,8 +59,6 @@ function irComprar() {
         historial.style.display = "none";
     });
 }
-
-
 function irRetirar() {
     botonAccionado.addEventListener("click", () => {
         retiro.style.display = "flex";
@@ -73,7 +68,6 @@ function irRetirar() {
         historial.style.display = "none";
     });
 }
-
 function irRetirarDesdeWallet() {
     retiro.style.display = "flex";
     billetera.style.display = "none";
@@ -81,7 +75,6 @@ function irRetirarDesdeWallet() {
     abono.style.display = "none";
     historial.style.display = "none";
 }
-
 function irHistorial() {
     botonAccionado.addEventListener("click", () => {
         historial.style.display = "flex";
@@ -92,10 +85,9 @@ function irHistorial() {
     });
 }
 
-
+//Itera los botones del menu de navegacion para mostrar la seccion seleccionada
 for (let i = 0; i < 6; i++) {
     botonAccionado = document.getElementById(`navegacionBtn__${i}`);
-
     if (i === 1) {
         irBilletera();
     } else if (i === 2) {
@@ -111,10 +103,7 @@ for (let i = 0; i < 6; i++) {
     }
 };
 
-
-
 // Cambia la selección en la seccion Comprar/Vender según se presione la seccion compra o venta
-
 let btnCompraVenta;
 let contenedorCompraVenta; let contenedorFormCompra = document.getElementById("contenedorForm__compra");
 let contenedorFormVenta = document.getElementById("contenedorForm__venta");
@@ -123,9 +112,7 @@ let windowVenta = document.getElementById("windowVenta");
 let btnWindowCompra = document.getElementById("compraVenta__1");
 let btnWindowVenta = document.getElementById("compraVenta__2");
 
-
-
-
+//Modifica los estilos en la seccion Comprar/Vender según el boton al que se haga clic
 for (let i = 0; i < 3; i++) {
     btnCompraVenta = document.getElementById(`compraVenta__${i}`)
 
@@ -154,9 +141,15 @@ for (let i = 0; i < 3; i++) {
             windowCompra.style.border = "none";
             btnWindowVenta.style.color = "#c3451b"
             btnWindowCompra.style.color = "#000";
+            
+            //Dibuja el saldo disponible en Btc, que está seleccionado por defecto
+            let div = document.getElementById("disponibleCripto");
+            div.innerHTML = "";
+            let span = document.createElement("span");
+            span.innerText = `Disponible: ${saldoBtc} BTC`;
+            div.append(span);
         }
     } else {
-        // Este es lo mismo de la primera condicion, tuve que agregarlo para que me deje estos estilos por defecto
         contenedorFormCompra.style.display = "flex";
         contenedorFormVenta.style.display = "none";
         windowCompra.classList.remove("btnDisabled");

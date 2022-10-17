@@ -9,20 +9,28 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="css/estilos.css">
     <script src="https://kit.fontawesome.com/7a66b2a120.js" crossorigin="anonymous"></script>
     <title>Crypto Exchange</title>
 </head>
 
 <body>
-    <div id="container" class="container show">
-        <header id="header" class="header">
-            <div class="container cabecera">
-                <div class="contenedorLogo">
-                    <h1 class="logo">Crypto Exchange</h1>
+    <header id="header" class="header">
+        <div class=" cabecera cabeceraIndex">
+            <div class="contenedorLogo">
+                <h1 class="logo">Crypto Exchange</h1>
+            </div>
+            <div class="contenedorRepo contenedorRepoIndex">
+                <div class="triangulo trianguloIndex">
+                    <div class="shape shapeIndex"></div>
+                    <h4><a href="https://github.com/beykerestrada/Simulador-ExchangeCripto" target="_blank">
+                        <i class="uil uil-github"></i>Ver Repositorio</a></h4>
                 </div>
             </div>
-        </header>
+        </div>
+    </header>
+    <div id="container" class="container show">
         <div class="container containerBody">
             <h1>Entra al mundo <span>crypto</span> en un par de minutos</h1>
             <h2>¿Quieres tener Bitcoin, Ethereum o USDC?</h2>
@@ -47,11 +55,20 @@
                     <input id="password" type="password" class="password" required>
                     <div class="formulario__botones">
                         <button type="button" id="btn__login" class="btn">Entrar</button>
+                        <button type="button" id="close" class="btn__secundario">Cancelar</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    <footer class="footer">
+        <h4>Desarrollado por Beyker Estrada</h4>
+        <div class="redesSociales">
+            <a href="https://www.linkedin.com/in/beykerestrada/" target="_blank"><i class="uil uil-linkedin"></i></a>
+            <div class="separador"></div>
+            <a href="https://github.com/beykerestrada" target="_blank"><i class="uil uil-github"></i></a>
+        </div>
+    </footer>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/index.js"></script>
 </body>

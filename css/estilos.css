@@ -12,7 +12,7 @@ body {
     /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #3a607377, #16222aea), url(../img/bitcoin.jpg);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+    height: 100vh;
 }
 
 span {
@@ -21,6 +21,8 @@ span {
 
 .body__billetera {
     background: #F3F7F0;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .container {
@@ -30,18 +32,16 @@ span {
 }
 
 .containerBody {
-    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    height: 100vh;
+
 }
 
 .header {
-    position: fixed;
-    top: 0%;
-    left: 0%;
-    right: 0%;
     background-color: #083D77;
+    width: 100%;
 }
 
 .cabecera {
@@ -49,10 +49,15 @@ span {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
-    margin: 0 30px;
+    padding: 0 30px;
 }
 
+.cabeceraIndex {
+    height: 100px;
+    margin: 0;
+    padding-left: 30px;
+    padding-right: 0;
+}
 
 .logo {
     font-size: 30px;
@@ -111,7 +116,7 @@ p {
 }
 
 .logOut i:hover {
-    color: #999393;
+    color: #E84855;
 }
 
 .btnContainer {
@@ -159,8 +164,7 @@ p {
 
 @media screen and (min-width: 800px) {
     .btn:hover {
-
-        box-shadow: 0px 2px 7px 0px rgba(0, 0, 0, 0.63);
+        background-color: #c99d55;
         transition: 0.3s;
     }
 
@@ -185,8 +189,8 @@ p {
 }
 
 .contenedorFormulario {
-    width: 25%;
-    height: 60%;
+    width: 30%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -214,8 +218,8 @@ p {
 
 /* Estilos para el formulario de Log in*/
 .formularioLogin {
-    width: 80%;
-    height: 80%;
+    width: 90%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -223,7 +227,7 @@ p {
 
 .contenedorFormImg {
     width: 90%;
-    height: 100%;
+    height: 90%;
     display: grid;
     place-items: center;
 }
@@ -238,14 +242,13 @@ p {
     flex-direction: column;
     justify-content: space-evenly;
     width: 100%;
-    height: 25%;
-
+    height: 35%;
 }
 
 .userName,
 .password {
     height: 30px;
-    margin: 0 0 20px 0;
+    margin: 0 0 10px 0;
     background-color: #dfe5e7;
     border: 0px;
     border-radius: 3px;
@@ -253,6 +256,9 @@ p {
     padding: 0 20px;
 }
 
+.password {
+    margin-bottom: 35px;
+}
 
 .tableSaldos {
     width: 90%;
@@ -270,7 +276,7 @@ p {
 }
 
 .tableSaldos tr {
-    border-bottom: 1px solid #3fa39c;
+    border-bottom: 1px solid #8093F1;
 }
 
 .tableSaldos td {
@@ -313,6 +319,11 @@ p {
     padding: 20px;
 }
 
+.formularioCompra span {
+    text-align: right;
+    color: #0B7A75;
+}
+
 .formularioAbono {
     border: .1px solid #8b8888;
     border-radius: 3px;
@@ -326,16 +337,26 @@ p {
     color: #050A15;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    appearance: textfield;
+}
+
 .gasto {
     height: 40px;
-    font-size: 25px;
-    margin: 20px 0 40px 0;
+    font-size: 20px;
+    margin: 8px 0 8px 0;
 }
 
 .listaCripto {
     height: 40px;
     font-size: 20px;
-    margin: 20px 0;
+    margin: 8px 0 20px 0;
 }
 
 .labelCompra {
@@ -345,7 +366,7 @@ p {
 
 .flexContainer {
     width: 100%;
-    margin: 40px 20px 80px 0;
+    margin: 0 0 40px 0;
     display: flex;
 
 }
@@ -361,7 +382,7 @@ p {
 
 .main {
     height: 90vh;
-    width: 70%;
+    width: 74%;
     padding: 20px 0 0 20px;
 }
 
@@ -374,17 +395,21 @@ p {
     box-shadow: 4px 7px 14px 3px rgba(0, 0, 0, 0.59);
     transition: all .3s;
 }
+
 .billetera__2 {
     align-items: center;
 }
+
 .billetera__3 {
     box-shadow: none;
 }
+
 .contenedortituloBilletera {
     width: 100%;
     padding: 0;
     background-color: #0B7A75;
 }
+
 .tituloBilletera {
     font-size: 40px;
     text-align: center;
@@ -394,12 +419,15 @@ p {
     margin: 0;
     width: 100%;
 }
+
 .navegacion__ul {
     margin-top: 40px;
 }
+
 .navegacion__li {
     list-style-type: none;
 }
+
 .navegacion__btn {
     padding: 20px;
     margin: 5px 5px 5px 0px;
@@ -415,36 +443,64 @@ p {
     background-color: transparent;
     transition: all .4s;
 }
+
 .navegacion__btn:hover {
     box-shadow: 6px 6px 5px #b5b5b5,
         -6px -6px 5px #c8c8c8;
-    color: #E84855;
+    color: #0B7A75;
 }
+
 .navegacion__btn:active {
     background-color: #bfbfbf;
 }
+
 .monedas {
     padding: 30px;
     display: flex;
     align-items: center;
     border-top: 0.2px solid #3fa39c;
 }
+
 .monedaSigno {
     width: 10%;
     font-size: 20px;
 }
+
 .monedaMonto {
     width: 60%;
     font-size: 20px;
     padding-left: 20px;
 }
+
 .monedaBtn {
     width: 30%;
 }
+
 .btnBilletera {
     width: 45%;
-    padding: 1px;
+    padding: 5px;
+    color: #F3F7F0;
+    border-radius: 3px;
+    border: none;
 }
+
+.btnBilleteraCompra {
+    background-color: #0B7A75;
+
+}
+
+.btnBilleteraCompra:hover {
+    background-color: #10615d;
+}
+
+.btnBilleteraVenta {
+    background-color: #E84855;
+}
+
+.btnBilleteraVenta:hover {
+    background-color: #ab3a43;
+}
+
 .btn__historial {
     align-self: flex-end;
 }
@@ -461,36 +517,44 @@ p {
     border-radius: 3px;
     box-shadow: 4px 7px 14px 3px rgba(0, 0, 0, 0.59);
 }
+
 .btn__container {
     height: 10%;
     display: flex;
     justify-content: space-between;
 }
+
 .btnCompra__container,
 .btnVenta__container {
     width: 50%;
     padding: 5px;
 }
+
 .btnActiveCompra {
     box-shadow: 5px -2px 10px -4px rgba(238, 238, 238, 1);
     border-top: 3px solid #255F85;
     border-right: 1px solid #ddd;
 }
+
 .btnActiveCompra button {
     color: #255F85;
 }
+
 .btnActiveVenta {
     box-shadow: -5px -2px 10px -4px rgba(238, 238, 238, 1);
     border-top: 3px solid #E84855;
     border-right: 1px solid #ddd;
 }
+
 .btnActiveVenta button {
     color: #E84855;
 }
+
 .btnDisabled {
     background-color: #bcbcbc;
     border-bottom: 1px solid #ddd;
 }
+
 .btnCompraVenta {
     width: 100%;
     height: 100%;
@@ -498,20 +562,25 @@ p {
     background-color: transparent;
     font-size: 20px;
 }
+
 .contenedorForm__disabled {
     display: none;
 }
+
 .mostrarPrecio {
     text-align: left;
     margin: 0;
 }
+
 .mostrarPrecio p {
     position: relative;
     margin: 0;
 }
+
 .priceVariation__negative {
     color: #E84855;
 }
+
 .priceVariation__positive {
     color: #0B7A75;
 }
@@ -569,7 +638,7 @@ p {
 }
 
 .tableHistorial tr {
-    border-bottom: 1px solid #3fa39c;
+    border-bottom: 1px solid #8093F1;
     padding: 30px;
 }
 
@@ -617,7 +686,7 @@ p {
 }
 
 .redesSociales a:hover {
-    color: #E84855;
+    color: #999393;
 }
 
 .separador {
@@ -632,6 +701,7 @@ p {
     height: 100px;
 }
 
+
 .triangulo {
     display: flex;
     justify-content: center;
@@ -640,16 +710,33 @@ p {
     height: 100px;
     background-color: #050A15;
     position: relative;
+    overflow: hidden;
 }
+
 .shape {
     position: absolute;
     width: 0;
     height: 0;
     border-top: 100px solid #F3F7F0;
     border-right: 100px solid transparent;
+
 }
+
+.shapeIndex {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: none;
+    border-right: 100px solid transparent;
+    border-bottom: 100px solid #083D77;
+    border-left: none;
+
+}
+
 .triangulo h4 {
     transform: rotateZ(-45deg) translateX(-2px) translateY(30px);
+    text-align: center;
+    overflow: hidden;
 }
 
 .triangulo h4:hover {
@@ -659,16 +746,35 @@ p {
 .triangulo h4 a {
     color: #F3F7F0;
     text-decoration: none;
-    display: block;
     font-size: 13px;
     margin: 0;
 }
+
 .triangulo a:hover {
-    color: #E84855;
+    color: #999393;
 }
 
 .triangulo h4 i {
-    display: block;
     text-align: center;
     font-size: 30px;
+    display: block;
+}
+
+.trianguloIndex h4 {
+    transform: rotateZ(45deg) translateX(2px) translateY(-30px);
+    overflow: hidden;
+    text-align: center;
+}
+
+.disponible {
+    margin-bottom: 25px;
+}
+
+.disponible span {
+    color: #0B7A75;
+}
+
+.formulario__botones__billetera {
+    height: 20%;
+    margin-top: 50px;
 }

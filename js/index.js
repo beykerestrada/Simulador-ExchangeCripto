@@ -2,10 +2,16 @@
 const open = document.getElementById("open");
 const close = document.getElementById("close");
 const btnLogin = document.getElementById("btn__login");
+const btnLoginCancelar = document.getElementById("btn__loginCancelar")
 
 open.addEventListener("click", (e) => {
   e.preventDefault();
   modalContainer.classList.add("show");
+});
+
+close.addEventListener("click", (e) => {
+  e.preventDefault();
+  modalContainer.classList.remove("show");
 });
 
 //Funcion que otorga acceso a la billtera si se ingresa usuario y contraseña
