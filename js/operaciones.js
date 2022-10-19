@@ -9,10 +9,8 @@ const saldoEth = JSON.parse(localStorage.getItem("saldoEth"));
 const saldoUsdc = JSON.parse(localStorage.getItem("saldoUsdc"));
 const saldoLtc = JSON.parse(localStorage.getItem("saldoLtc"));
 const saldoBch = JSON.parse(localStorage.getItem("saldoBch"));
+const saldos = []
 
-const saldos = [
-    {}
-]
 // Declaracion de funcion que muestra mensaje de éxito al completar una operacion
 // Además recarga la página para que la operacion quede reflejada en el historial y devuelve a inicio
 function operacionExitosa() {
@@ -205,155 +203,41 @@ for (let i = 0; i < 6; i++) {
 //COMIENZO DEL FLUJO DE COMPRA
 //Funciones que actualizan el saldo en cripto despues de una compra o venta
 
-const actualizarSaldoBtc = document.getElementById("actualizarSaldoBtc");
-const actualizarSaldoEth = document.getElementById("actualizarSaldoEth");
-const actualizarSaldoUsdc = document.getElementById("actualizarSaldoUsdc");
-const actualizarSaldoLtc = document.getElementById("actualizarSaldoLtc");
-const actualizarSaldoBch = document.getElementById("actualizarSaldoBch");
+function updateSaldo(moneda) {
+    const localStorageKey = `saldoBilletera${moneda}`
+    const actualizarSaldo = document.getElementById(`actualizarSaldo${moneda}`);
+    let saldo = JSON.parse(localStorage.getItem(`saldo${moneda}`));
+    if (!saldo) {
+        actualizarSaldo.innerHTML = `$ 0`;
+    } else {
+        actualizarSaldo.innerHTML = "";
+        actualizarSaldo.innerHTML = `$ ${saldo}`;
+    }
+}
+updateSaldo("Btc");
+updateSaldo("Eth");
+updateSaldo("Usdc");
+updateSaldo("Ltc");
+updateSaldo("Bch");
 
-function updateSaldoBtc() {
-    let saldoBilleteraBtc = JSON.parse(localStorage.getItem("saldoBtc"));
-    if (!saldoBilleteraBtc) {
-        actualizarSaldoBtc.innerHTML = `$ 0`;
-    } else {
-        actualizarSaldoBtc.innerHTML = "";
-        actualizarSaldoBtc.innerHTML = `$ ${saldoBilleteraBtc}`;
-    }
-}
-updateSaldoBtc()
-function updateSaldoEth(){
-    let saldoBilleteraEth = JSON.parse(localStorage.getItem("saldoEth"));
-    if (!saldoBilleteraEth) {
-        actualizarSaldoEth.innerHTML = `$ 0`;
-    } else {
-        actualizarSaldoEth.innerHTML = "";
-        actualizarSaldoEth.innerHTML = `$ ${saldoBilleteraEth}`;
-    }
-}
-updateSaldoEth();
-function updateSaldoUsdc(){
-    let saldoBilleteraUsdc = JSON.parse(localStorage.getItem("saldoUsdc"));
-    if (!saldoBilleteraUsdc) {
-        actualizarSaldoUsdc.innerText = `$ 0`;
-    } else {
-        actualizarSaldoUsdc.innerText = "";
-        actualizarSaldoUsdc.innerText = `$ ${saldoBilleteraUsdc}`;
-    }
-}
-updateSaldoUsdc();
-function updateSaldoLtc(){
-    let saldoBilleteraLtc = JSON.parse(localStorage.getItem("saldoLtc"));
-    if (!saldoBilleteraLtc) {
-        actualizarSaldoLtc.innerHTML = `$ 0`;
-    } else {
-        actualizarSaldoLtc.innerHTML = "";
-        actualizarSaldoLtc.innerHTML = `$ ${saldoBilleteraLtc}`;
-    }
-}
-updateSaldoLtc();
-function updateSaldoBch(){
-    let saldoBilleteraBch = JSON.parse(localStorage.getItem("saldoBch"));
-    if (!saldoBilleteraBch) {
-        actualizarSaldoBch.innerHTML = `$ 0`;
-    } else {
-        actualizarSaldoBch.innerHTML = "";
-        actualizarSaldoBch.innerHTML = `$ ${saldoBilleteraBch}`;
-    }
-}
-updateSaldoBch();
-
-function comprarBtc() {
-    monedaOperada = "BTC";
-    let cantidadRecibida = valorCompra / valorBtc;
-    let saldoBtc = JSON.parse(localStorage.getItem("saldoBtc"));
-    saldoBtc = parseFloat(saldoBtc + cantidadRecibida);
-    saldoBtc = parseFloat(saldoBtc.toFixed(8));
+function comprar(moneda) {
+    const localStorageKey = `saldo${moneda}`;
+    const valorEnClp = obtenerValor(moneda);
+    const monedaEnUpperCase = moneda.toUpperCase();
+    let cantidadRecibida = valorCompra / valorEnClp;
+    let saldo = JSON.parse(localStorage.getItem(localStorageKey));
+    saldo = parseFloat(saldo + cantidadRecibida);
+    saldo = parseFloat(saldo.toFixed(8));
     saldoActual = JSON.parse(localStorage.getItem("saldoActual"));
     saldoActual = saldoActual - valorCompra;
 
     //aqui se actualiza el saldo en local storage
-    localStorage.setItem("saldoBtc", JSON.stringify(saldoBtc));
+    localStorage.setItem(localStorageKey, JSON.stringify(saldo));
     localStorage.setItem("saldoActual", JSON.stringify(saldoActual));
 
     actualizarSaldo();
-    updateSaldoBtc();
-    addCryptoTransaction(transactionHistory.length + 1, operacion, monedaOperada, cantidadRecibida, `$ ${estandarPesosChilenos.format(valorBtc)}`);
-    operacionExitosa();
-}
-
-function comprarEth() {
-    monedaOperada = "ETH";
-    let cantidadRecibida = valorCompra / valorEth;
-    let saldoEth = JSON.parse(localStorage.getItem("saldoEth"));
-    saldoEth = parseFloat(saldoEth + cantidadRecibida);
-    saldoEth = parseFloat(saldoEth.toFixed(8));
-    saldoActual = JSON.parse(localStorage.getItem("saldoActual"));
-    saldoActual = saldoActual - valorCompra;
-
-    //aqui se actualiza el saldo en local storage
-    localStorage.setItem("saldoEth", JSON.stringify(saldoEth));
-    localStorage.setItem("saldoActual", JSON.stringify(saldoActual));
-
-    actualizarSaldo();
-    updateSaldoEth();
-    addCryptoTransaction(transactionHistory.length + 1, operacion, monedaOperada, cantidadRecibida, `$ ${estandarPesosChilenos.format(valorEth)}`);
-    operacionExitosa();
-}
-
-function comprarUsdc() {
-    monedaOperada = "USDC";
-    let cantidadRecibida = valorCompra / valorUsdc;
-    let saldoUsdc = JSON.parse(localStorage.getItem("saldoUsdc"));
-    saldoUsdc = parseFloat(saldoUsdc + cantidadRecibida);
-    saldoUsdc = parseFloat(saldoUsdc.toFixed(2));
-    saldoActual = JSON.parse(localStorage.getItem("saldoActual"));
-    saldoActual = saldoActual - valorCompra;
-
-    //aqui se actualiza el saldo en local storage
-    localStorage.setItem("saldoUsdc", JSON.stringify(saldoUsdc));
-    localStorage.setItem("saldoActual", JSON.stringify(saldoActual));
-
-    actualizarSaldo();
-    updateSaldoUsdc();
-    addCryptoTransaction(transactionHistory.length + 1, operacion, monedaOperada, cantidadRecibida, `$ ${estandarPesosChilenos.format(valorUsdc)}`);
-    operacionExitosa();
-}
-
-function comprarLtc() {
-    monedaOperada = "LTC";
-    let cantidadRecibida = valorCompra / valorLtc;
-    let saldoLtc = JSON.parse(localStorage.getItem("saldoLtc"));
-    saldoLtc = parseFloat(saldoLtc + cantidadRecibida);
-    saldoLtc = parseFloat(saldoLtc.toFixed(8));
-    saldoActual = JSON.parse(localStorage.getItem("saldoActual"));
-    saldoActual = saldoActual - valorCompra;
-
-    //aqui se actualiza el saldo en local storage
-    localStorage.setItem("saldoLtc", JSON.stringify(saldoLtc));
-    localStorage.setItem("saldoActual", JSON.stringify(saldoActual));
-
-    actualizarSaldo();
-    updateSaldoLtc();
-    addCryptoTransaction(transactionHistory.length + 1, operacion, monedaOperada, cantidadRecibida, `$ ${estandarPesosChilenos.format(valorLtc)}`);
-    operacionExitosa();
-}
-
-function comprarBch() {
-    monedaOperada = "BCH";
-    let cantidadRecibida = valorCompra / valorBch;
-    let saldoBch = JSON.parse(localStorage.getItem("saldoBch"));
-    saldoBch = parseFloat(saldoBch + cantidadRecibida);
-    saldoBch = parseFloat(saldoBch.toFixed(8));
-    saldoActual = JSON.parse(localStorage.getItem("saldoActual"));
-    saldoActual = saldoActual - valorCompra;
-
-    //aqui se actualiza el saldo en local storage
-    localStorage.setItem("saldoBch", JSON.stringify(saldoBch));
-    localStorage.setItem("saldoActual", JSON.stringify(saldoActual));
-
-    actualizarSaldo();
-    updateSaldoBch();
-    addCryptoTransaction(transactionHistory.length + 1, operacion, monedaOperada, cantidadRecibida, `$ ${estandarPesosChilenos.format(valorBch)}`);
+    updateSaldo(moneda);
+    addCryptoTransaction(transactionHistory.length + 1, operacion, monedaEnUpperCase, cantidadRecibida, `$ ${estandarPesosChilenos.format(valorEnClp)}`);
     operacionExitosa();
 }
 
@@ -411,15 +295,15 @@ function comprarMoneda() {
     } else {
         obtenerMonedaSeleccionada();
         if (moneda === 1) {
-            comprarBtc()
+            comprar("Btc")
         } else if (moneda === 2) {
-            comprarEth();
+            comprar("Eth");
         } else if (moneda === 3) {
-            comprarUsdc();
+            comprar("Usdc");
         } else if (moneda === 4) {
-            comprarLtc();
+            comprar("Ltc");
         } else if (moneda === 5) {
-            comprarBch();
+            comprar("Bch");
         }
     }
 }
@@ -432,13 +316,30 @@ inputCompra.addEventListener("keyup", function (event) {
 });
 //FIN FLUJO DE COMPRA
 
-//COMIENZO FLUJO DE VENTA
-function venderBtc() {
-    monedaOperada = "BTC";
-    let saldoBtc = JSON.parse(localStorage.getItem("saldoBtc"));
-    let valorVenta = parseFloat(document.getElementById("valorVenta").value);
-    let cantidadRecibida = valorVenta * valorBtc;
+function obtenerValor(moneda){
+    if(moneda === "Btc"){
+        return valorBtc
+    }else if(moneda === "Eth"){
+        return valorEth
+    }else if(moneda === "Usdc"){
+        return valorUsdc
+    }else if(moneda === "Ltc"){
+        return valorLtc
+    }else if(moneda === "Bch"){
+        return valorBch
+    }else {
+        throw new Error("Moneda no soportada")
+    }
+}
 
+//COMIENZO FLUJO DE VENTA
+function vender(moneda) {
+    const localStorageKey = `saldo${moneda}`
+    const valorEnClp = obtenerValor(moneda);
+    let saldo = JSON.parse(localStorage.getItem(localStorageKey));
+    let valorVenta = parseFloat(document.getElementById("valorVenta").value);
+    let cantidadRecibida = valorVenta * valorEnClp;
+    const monedaEnUpperCase = moneda.toUpperCase();
     if (!valorVenta) {
         Swal.fire({
             icon: 'error',
@@ -451,189 +352,25 @@ function venderBtc() {
             title: 'Oops...',
             text: 'El mínimo que puedes vender es BTC 0.00005',
         })
-    } else if (valorVenta > saldoBtc) {
+    } else if (valorVenta > saldo) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
             text: `No tienes suficiente saldo, intenta con una cantidad menor`,
         })
     } else {
-        saldoBtc = parseFloat(saldoBtc - valorVenta);
-        saldoBtc = parseFloat(saldoBtc.toFixed(8));
+        saldo = parseFloat(saldo - valorVenta);
+        saldo = parseFloat(saldo.toFixed(8));
         saldoActual = JSON.parse(localStorage.getItem("saldoActual"));
         saldoActual = saldoActual + cantidadRecibida;
 
         //aqui se actualiza el saldo en local storage
-        localStorage.setItem("saldoBtc", JSON.stringify(saldoBtc));
+        localStorage.setItem(localStorageKey, JSON.stringify(saldo));
         localStorage.setItem("saldoActual", JSON.stringify(saldoActual));
 
         actualizarSaldo();
-        updateSaldoBtc();
-        addCryptoTransaction(transactionHistory.length + 1, operacion, monedaOperada, valorVenta, `$ ${estandarPesosChilenos.format(valorBtc)}`);
-        operacionExitosa();
-    }
-}
-
-function venderEth() {
-    monedaOperada = "ETH";
-    let saldoEth = JSON.parse(localStorage.getItem("saldoEth"));
-    let valorVenta = parseFloat(document.getElementById("valorVenta").value);
-    let cantidadRecibida = valorVenta * valorEth;
-
-    if (!valorVenta) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Por favor ingresa la cantidad a vender',
-        })
-    } else if (valorVenta < 0.00005) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'El mínimo que puedes vender es ETH 0.00005',
-        })
-    } else if (valorVenta > saldoEth) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: `No tienes suficiente saldo, intenta con una cantidad menor`,
-        })
-    } else {
-        saldoEth = parseFloat(saldoEth - valorVenta);
-        saldoEth = parseFloat(saldoEth.toFixed(8));
-        saldoActual = JSON.parse(localStorage.getItem("saldoActual"));
-        saldoActual = saldoActual + cantidadRecibida;
-
-        //aqui se actualiza el saldo en local storage
-        localStorage.setItem("saldoEth", JSON.stringify(saldoEth));
-        localStorage.setItem("saldoActual", JSON.stringify(saldoActual));
-
-        actualizarSaldo();
-        updateSaldoEth();
-        addCryptoTransaction(transactionHistory.length + 1, operacion, monedaOperada, valorVenta, `$ ${estandarPesosChilenos.format(valorEth)}`);
-        operacionExitosa();
-    }
-}
-
-function venderUsdc() {
-    monedaOperada = "USDC";
-    let saldoUsdc = JSON.parse(localStorage.getItem("saldoUsdc"));
-    let valorVenta = parseFloat(document.getElementById("valorVenta").value);
-    let cantidadRecibida = valorVenta * valorUsdc;
-
-    if (!valorVenta) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Por favor ingresa la cantidad a vender',
-        })
-    } else if (valorVenta < 10) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'El mínimo que puedes vender es USDC 10',
-        })
-    } else if (valorVenta > saldoUsdc) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: `No tienes suficiente saldo, intenta con una cantidad menor`,
-        })
-    } else {
-        saldoUsdc = parseFloat(saldoUsdc - valorVenta);
-        saldoUsdc = parseFloat(saldoUsdc.toFixed(8));
-        saldoActual = JSON.parse(localStorage.getItem("saldoActual"));
-        saldoActual = saldoActual + cantidadRecibida;
-
-        //aqui se actualiza el saldo en local storage
-        localStorage.setItem("saldoUsdc", JSON.stringify(saldoUsdc));
-        localStorage.setItem("saldoActual", JSON.stringify(saldoActual));
-
-        actualizarSaldo();
-        updateSaldoUsdc();
-        addCryptoTransaction(transactionHistory.length + 1, operacion, monedaOperada, valorVenta, `$ ${estandarPesosChilenos.format(valorUsdc)}`);
-        operacionExitosa();
-    }
-}
-
-function venderLtc() {
-    monedaOperada = "LTC";
-    let saldoLtc = JSON.parse(localStorage.getItem("saldoLtc"));
-    let valorVenta = parseFloat(document.getElementById("valorVenta").value);
-    let cantidadRecibida = valorVenta * valorLtc;
-
-    if (!valorVenta) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Por favor ingresa la cantidad a vender',
-        })
-    } else if (valorVenta < 0.00005) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'El mínimo que puedes vender es LTC 0.00005',
-        })
-    } else if (valorVenta > saldoLtc) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: `No tienes suficiente saldo, intenta con una cantidad menor`,
-        })
-    } else {
-        saldoLtc = parseFloat(saldoLtc - valorVenta);
-        saldoLtc = parseFloat(saldoLtc.toFixed(8));
-        saldoActual = JSON.parse(localStorage.getItem("saldoActual"));
-        saldoActual = saldoActual + cantidadRecibida;
-
-        //aqui se actualiza el saldo en local storage
-        localStorage.setItem("saldoLtc", JSON.stringify(saldoLtc));
-        localStorage.setItem("saldoActual", JSON.stringify(saldoActual));
-
-        actualizarSaldo();
-        updateSaldoLtc();
-        addCryptoTransaction(transactionHistory.length + 1, operacion, monedaOperada, valorVenta, `$ ${estandarPesosChilenos.format(valorLtc)}`);
-        operacionExitosa();
-    }
-}
-
-function venderBch() {
-    monedaOperada = "BCH";
-    let saldoBch = JSON.parse(localStorage.getItem("saldoBch"));
-    let valorVenta = parseFloat(document.getElementById("valorVenta").value);
-    let cantidadRecibida = valorVenta * valorBch;
-
-    if (!valorVenta) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Por favor ingresa la cantidad a vender',
-        })
-    } else if (valorVenta < 0.00005) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'El mínimo que puedes vender es LTC 0.00005',
-        })
-    } else if (valorVenta > saldoBch) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: `No tienes suficiente saldo, intenta con una cantidad menor`,
-        })
-    } else {
-        saldoBch = parseFloat(saldoBch - valorVenta);
-        saldoBch = parseFloat(saldoBch.toFixed(8));
-        saldoActual = JSON.parse(localStorage.getItem("saldoActual"));
-        saldoActual = saldoActual + cantidadRecibida;
-
-        //aqui se actualiza el saldo en local storage
-        localStorage.setItem("saldoBch", JSON.stringify(saldoBch));
-        localStorage.setItem("saldoActual", JSON.stringify(saldoActual));
-
-        actualizarSaldo();
-        updateSaldoBch();
-        addCryptoTransaction(transactionHistory.length + 1, operacion, monedaOperada, valorVenta, `$ ${estandarPesosChilenos.format(valorBch)}`);
+        updateSaldo(moneda);
+        addCryptoTransaction(transactionHistory.length + 1, operacion, monedaEnUpperCase, valorVenta, `$ ${estandarPesosChilenos.format(valorEnClp)}`);
         operacionExitosa();
     }
 }
@@ -660,15 +397,15 @@ function venderMoneda() {
     operacion = "Venta";
     obtenerCryptoSeleccionada();
     if (moneda === 1) {
-        venderBtc();
+        vender("Btc");
     } else if (moneda === 2) {
-        venderEth();
+        vender("Eth");
     } else if (moneda === 3) {
-        venderUsdc();
+        vender("Usdc");
     } else if (moneda === 4) {
-        venderLtc();
+        vender("Ltc");
     } else if (moneda === 5) {
-        venderBch();
+        vender("Bch");
     }
 }
 
@@ -736,7 +473,6 @@ let opcionVentaLtc = document.getElementById("optionVenta__4");
 let opcionVentaBch = document.getElementById("optionVenta__5");
 let botonAccionadoVenta;
 
-
 function irVentaDesdeWallet(option) {
     botonAccionadoVenta.addEventListener("click", () => {
         compra.style.display = "flex";
@@ -757,7 +493,6 @@ function irVentaDesdeWallet(option) {
         option.setAttribute("selected", "true");
     });
 }
-
 
 //Muestra en un span, el saldo disponible cuando se quiere vender una cripto
 const criptomonedas = document.getElementById("listaCripto");
@@ -785,8 +520,6 @@ function dibujarSaldoSpan(saldo, sigla) {
     span.innerText = `Disponible: ${saldo} ${sigla}`;
     div.append(span);
 }
-
-
 
 //Muestra en un span, el saldo disponible en CLP cuando se quiere hacer un retiro
 function mostrarSaldoFiatSpan() {
