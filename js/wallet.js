@@ -18,12 +18,24 @@ btnLogOut.onclick = () => {
 
 //Funciones que controlan las secciones de la billetera según la opcion seleccionada en el menu
 let botonAccionado;
+let botonInicio = document.getElementById(`navegacionBtn__1`);
+let botonAbonar = document.getElementById(`navegacionBtn__2`);
+let botonRetirar = document.getElementById(`navegacionBtn__3`);
+let botonComprar = document.getElementById(`navegacionBtn__4`);
+let botonHistorial = document.getElementById(`navegacionBtn__5`);
 function inicio() {
     billetera.style.display = "flex";
     abono.style.display = "none";
     compra.style.display = "none";
     retiro.style.display = "none";
     historial.style.display = "none";
+    if (screen.width < 769){
+        botonInicio.classList.add("active");
+        botonAbonar.classList.remove("active");
+        botonRetirar.classList.remove("active");
+        botonComprar.classList.remove("active");
+        botonHistorial.classList.remove("active");
+    }
 }
 function irBilletera() {
     botonAccionado.addEventListener("click", () => {
@@ -32,6 +44,13 @@ function irBilletera() {
         compra.style.display = "none";
         retiro.style.display = "none";
         historial.style.display = "none";
+        if (screen.width < 769){
+            botonInicio.classList.add("active");
+            botonAbonar.classList.remove("active");
+            botonRetirar.classList.remove("active");
+            botonComprar.classList.remove("active");
+            botonHistorial.classList.remove("active");
+        }
     });
 }
 function irAbonar() {
@@ -41,7 +60,15 @@ function irAbonar() {
         compra.style.display = "none";
         retiro.style.display = "none";
         historial.style.display = "none";
+        if (screen.width < 769){
+            botonInicio.classList.remove("active");
+            botonAbonar.classList.add("active");
+            botonRetirar.classList.remove("active");
+            botonComprar.classList.remove("active");
+            botonHistorial.classList.remove("active");
+        }
     });
+
 }
 function irAbonarDesdeWallet() {
     abono.style.display = "flex";
@@ -49,6 +76,13 @@ function irAbonarDesdeWallet() {
     compra.style.display = "none";
     retiro.style.display = "none";
     historial.style.display = "none";
+    if (screen.width < 769){
+        botonInicio.classList.remove("active");
+        botonAbonar.classList.add("active");
+        botonRetirar.classList.remove("active");
+        botonComprar.classList.remove("active");
+        botonHistorial.classList.remove("active");
+    }
 }
 function irComprar() {
     botonAccionado.addEventListener("click", () => {
@@ -57,6 +91,13 @@ function irComprar() {
         abono.style.display = "none";
         retiro.style.display = "none";
         historial.style.display = "none";
+        if (screen.width < 769){
+            botonInicio.classList.remove("active");
+            botonAbonar.classList.remove("active");
+            botonRetirar.classList.remove("active");
+            botonComprar.classList.add("active");
+            botonHistorial.classList.remove("active");
+        }
     });
 }
 function irRetirar() {
@@ -66,7 +107,15 @@ function irRetirar() {
         compra.style.display = "none";
         abono.style.display = "none";
         historial.style.display = "none";
+        if (screen.width < 769){
+            botonInicio.classList.remove("active");
+            botonAbonar.classList.remove("active");
+            botonRetirar.classList.add("active");
+            botonComprar.classList.remove("active");
+            botonHistorial.classList.remove("active");
+        }
     });
+
 }
 function irRetirarDesdeWallet() {
     retiro.style.display = "flex";
@@ -74,6 +123,13 @@ function irRetirarDesdeWallet() {
     compra.style.display = "none";
     abono.style.display = "none";
     historial.style.display = "none";
+    if (screen.width < 769){
+        botonInicio.classList.remove("active");
+        botonAbonar.classList.remove("active");
+        botonRetirar.classList.add("active");
+        botonComprar.classList.remove("active");
+        botonHistorial.classList.remove("active");
+    }
 }
 function irHistorial() {
     botonAccionado.addEventListener("click", () => {
@@ -82,10 +138,18 @@ function irHistorial() {
         compra.style.display = "none";
         retiro.style.display = "none";
         abono.style.display = "none";
+        if (screen.width < 769){
+            botonInicio.classList.remove("active");
+            botonAbonar.classList.remove("active");
+            botonRetirar.classList.remove("active");
+            botonComprar.classList.remove("active");
+            botonHistorial.classList.add("active");
+        }
     });
 }
 
 //Itera los botones del menu de navegacion para mostrar la seccion seleccionada
+
 for (let i = 0; i < 6; i++) {
     botonAccionado = document.getElementById(`navegacionBtn__${i}`);
     if (i === 1) {
