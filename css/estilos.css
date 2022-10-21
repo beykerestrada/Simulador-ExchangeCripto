@@ -1041,6 +1041,10 @@ input[type=number] {
         justify-content: space-evenly;
     }
 
+    .tableSaldos tr {
+        border-bottom: none;
+    }
+
     .formularioAbono,
     .formularioCompra {
         height: 70%;
