@@ -439,6 +439,13 @@ function irCompraDesdeWallet(option) {
         retiro.style.display = "none";
         historial.style.display = "none";
         option.setAttribute("selected", "true")
+        if (screen.width < 769){
+            botonInicio.classList.remove("active");
+            botonAbonar.classList.remove("active");
+            botonRetirar.classList.remove("active");
+            botonComprar.classList.add("active");
+            botonHistorial.classList.remove("active");
+        }
     });
 }
 
@@ -491,6 +498,13 @@ function irVentaDesdeWallet(option) {
         btnWindowVenta.style.color = "#c3451b"
         btnWindowCompra.style.color = "#000";
         option.setAttribute("selected", "true");
+        if (screen.width < 769){
+            botonInicio.classList.remove("active");
+            botonAbonar.classList.remove("active");
+            botonRetirar.classList.remove("active");
+            botonComprar.classList.add("active");
+            botonHistorial.classList.remove("active");
+        }
     });
 }
 

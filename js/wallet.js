@@ -192,6 +192,7 @@ for (let i = 0; i < 3; i++) {
             windowVenta.style.border = "none";
             btnWindowCompra.style.color = "#255f85"
             btnWindowVenta.style.color = "#000";
+            
         }
     } else if (i === 2) {
         btnCompraVenta.onclick = () => {
