@@ -29,7 +29,7 @@ function inicio() {
     compra.style.display = "none";
     retiro.style.display = "none";
     historial.style.display = "none";
-    if (screen.width < 769){
+    if (screen.width < 851){
         botonInicio.classList.add("active");
         botonAbonar.classList.remove("active");
         botonRetirar.classList.remove("active");
@@ -44,7 +44,7 @@ function irBilletera() {
         compra.style.display = "none";
         retiro.style.display = "none";
         historial.style.display = "none";
-        if (screen.width < 769){
+        if (screen.width < 851){
             botonInicio.classList.add("active");
             botonAbonar.classList.remove("active");
             botonRetirar.classList.remove("active");
@@ -60,7 +60,7 @@ function irAbonar() {
         compra.style.display = "none";
         retiro.style.display = "none";
         historial.style.display = "none";
-        if (screen.width < 769){
+        if (screen.width < 851){
             botonInicio.classList.remove("active");
             botonAbonar.classList.add("active");
             botonRetirar.classList.remove("active");
@@ -76,7 +76,7 @@ function irAbonarDesdeWallet() {
     compra.style.display = "none";
     retiro.style.display = "none";
     historial.style.display = "none";
-    if (screen.width < 769){
+    if (screen.width < 851){
         botonInicio.classList.remove("active");
         botonAbonar.classList.add("active");
         botonRetirar.classList.remove("active");
@@ -91,7 +91,7 @@ function irComprar() {
         abono.style.display = "none";
         retiro.style.display = "none";
         historial.style.display = "none";
-        if (screen.width < 769){
+        if (screen.width < 851){
             botonInicio.classList.remove("active");
             botonAbonar.classList.remove("active");
             botonRetirar.classList.remove("active");
@@ -107,7 +107,7 @@ function irRetirar() {
         compra.style.display = "none";
         abono.style.display = "none";
         historial.style.display = "none";
-        if (screen.width < 769){
+        if (screen.width < 851){
             botonInicio.classList.remove("active");
             botonAbonar.classList.remove("active");
             botonRetirar.classList.add("active");
@@ -123,7 +123,7 @@ function irRetirarDesdeWallet() {
     compra.style.display = "none";
     abono.style.display = "none";
     historial.style.display = "none";
-    if (screen.width < 769){
+    if (screen.width < 851){
         botonInicio.classList.remove("active");
         botonAbonar.classList.remove("active");
         botonRetirar.classList.add("active");
@@ -138,7 +138,7 @@ function irHistorial() {
         compra.style.display = "none";
         retiro.style.display = "none";
         abono.style.display = "none";
-        if (screen.width < 769){
+        if (screen.width < 851){
             botonInicio.classList.remove("active");
             botonAbonar.classList.remove("active");
             botonRetirar.classList.remove("active");

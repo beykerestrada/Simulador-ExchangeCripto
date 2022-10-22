@@ -161,7 +161,7 @@ p {
     background-color: #999393;
 }
 
-@media screen and (min-width: 668px) {
+@media screen and (min-width: 851px) {
 
     .btn:hover {
         background-color: #c99d55;
@@ -791,15 +791,21 @@ input[type=number] {
     margin-top: 50px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
+    .contenedorFormulario {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 850px) {
 
     .cabecera {
         padding: 0;
     }
 
     .logo {
-        padding: 10px;
-        font-size: 20px;
+        padding: 30px;
+        font-size: 25px;
         font-weight: 700;
     }
 
@@ -809,7 +815,7 @@ input[type=number] {
     }
 
     .nombreUsuario__p p {
-        font-size: 12px;
+        font-size: 15px;
         margin-right: 8px;
     }
 
@@ -846,7 +852,7 @@ input[type=number] {
         border-radius: 3px;
         box-shadow: 4px 7px 14px 3px rgba(0, 0, 0, 0.59);
         width: 100%;
-        height: 40px;
+        height: 60px;
         position: fixed;
         bottom: 0px;
         left: 0px;
@@ -873,7 +879,7 @@ input[type=number] {
         width: 100%;
         text-decoration: none;
         color: #343333;
-        font-size: 8px;
+        font-size: 15px;
         text-align: center;
         border-bottom-right-radius: 0px;
         border-top-right-radius: 0px;
@@ -883,7 +889,7 @@ input[type=number] {
 
     .navegacion__btn i {
         display: block;
-        font-size: 15px;
+        font-size: 20px;
     }
 
 
@@ -905,7 +911,9 @@ input[type=number] {
         padding: 0 0 60px 0;
         overflow-y: scroll;
     }
-
+    .btnBilletera {
+        padding: 10px;
+    }
 
     .contenedortituloBilletera {
         border-radius: 0px;
@@ -937,17 +945,6 @@ input[type=number] {
         border-collapse: collapse;
     }
 
-    .tableSaldos th {
-        height: 50px;
-        font-size: 20px;
-        border-bottom: 1px solid;
-        padding-left: 10px;
-    }
-
-    .tableSaldos tr {
-        border-bottom: 1px solid #8093F1;
-    }
-
     .tableSaldos td {
         height: 10px;
         font-size: 14px;
@@ -955,9 +952,10 @@ input[type=number] {
         padding-bottom: 0px;
         padding-left: 0px;
     }
-     tr {
+
+    tr {
         border: none;
-     }
+    }
 
     .tableRow {
         display: grid;
@@ -968,7 +966,7 @@ input[type=number] {
             "sigla precio variation"
             "sigla botones botones";
         margin: 20px auto;
-        height: 120px;
+        height: 150px;
         width: 90%;
         border: 1px solid;
         padding: 10px;
@@ -999,7 +997,7 @@ input[type=number] {
     }
 
     .tableSaldos .saldo {
-        font-size: 20px;
+        font-size: 30px;
         display: flex;
         height: 100%;
         align-items: center;
@@ -1010,17 +1008,19 @@ input[type=number] {
     .tableSaldos .precio,
     .tableSaldos .variation,
     .tableSaldos .contenedorBtn {
-        font-size: 13px;
+        font-size: 23px;
         text-align: right;
         height: 100%;
         display: flex;
         align-items: center;
         justify-content: flex-end;
     }
+
     .tableSaldos .precio {
         color: #6e6c6c;
         border-bottom: .1px solid #d8d1d1;
     }
+
     .tableSaldos .sigla {
         display: grid;
         place-items: center;
@@ -1028,10 +1028,12 @@ input[type=number] {
         font-size: 25px;
         border-right: .1px solid #d8d1d1;
     }
+
     .tableSaldos .variation {
-        font-size: 12px !important;
+        font-size: 22px !important;
         border-bottom: .1px solid #d8d1d1;
     }
+
     .tableSaldos .contenedorBtn {
         justify-content: space-evenly;
     }
@@ -1046,13 +1048,63 @@ input[type=number] {
         width: 90%;
         margin: auto;
     }
+
     .sectionContainer {
         height: 70%;
     }
+
     .contenedorFormulario {
         height: 90vh;
     }
+
     .historialBtn {
         margin-top: 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .logo {
+        padding: 10px;
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .nombreUsuario__p p {
+        font-size: 13px;
+        margin-right: 8px;
+    }
+
+    .navegacion {
+        height: 40px;
+    }
+
+    .navegacion__btn {
+        font-size: 8px;
+    }
+
+    .navegacion__btn i {
+        font-size: 15px;
+    }
+
+    .tableRow {
+        height: 120px;
+    }
+
+    .tableSaldos .saldo {
+        font-size: 20px;
+    }
+
+    .tableSaldos .precio,
+    .tableSaldos .variation,
+    .tableSaldos .contenedorBtn {
+        font-size: 13px;
+    }
+
+    .tableSaldos .variation {
+        font-size: 12px !important;
+        border-bottom: .1px solid #d8d1d1;
+    }
+    .btnBilletera {
+        padding: 5px;
     }
 }
