@@ -38,7 +38,6 @@ span {
     flex-direction: column;
     justify-content: center;
     height: 100vh;
-
 }
 
 .header {
@@ -799,6 +798,12 @@ input[type=number] {
 
 @media screen and (max-width: 850px) {
 
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 80vh;
+    }
     .cabecera {
         padding: 0;
     }
@@ -831,6 +836,9 @@ input[type=number] {
 
     .contenedorRepo {
         display: none;
+    }
+    .contenedorRepoIndex {
+        display: flex;
     }
 
     .flexContainer {
@@ -893,7 +901,7 @@ input[type=number] {
     }
 
 
-    .footer {
+    .footerBilletera {
         display: none;
     }
 
@@ -1068,7 +1076,10 @@ input[type=number] {
         font-size: 20px;
         font-weight: 700;
     }
-
+    .container{
+        width: 90%;
+        height: 90vh;
+    }
     .nombreUsuario__p p {
         font-size: 13px;
         margin-right: 8px;
